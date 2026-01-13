@@ -12,7 +12,7 @@
     <meta property="og:description" content="당신의 소중한 시간을 위해, 최고의 이동 서비스를 제공합니다.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1562426503-12e6fd634081?q=80&w=1920&auto=format&fit=crop">
 
-    <!-- Google Fonts (Serif for Luxury, Sans for Readability) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
                             600: '#B45309',
                         },
                         navy: {
-                            900: '#0F172A', // Slate 900 base
+                            900: '#0F172A',
                             950: '#020617',
                         }
                     }
@@ -49,16 +49,18 @@
         
         /* 럭셔리 배경 효과 */
         .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1562426503-12e6fd634081?q=80&w=1920&auto=format&fit=crop'); /* 벤츠 S클래스/리무진 느낌의 이미지 */
+            background-image: url('https://images.unsplash.com/photo-1562426503-12e6fd634081?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
         
-        /* 구글 번역바 숨김 */
+        /* 구글 번역바 숨김 (디자인 유지) */
         .goog-te-banner-frame.skiptranslate { display: none !important; } 
         body { top: 0px !important; } 
         #google_translate_element { display: none; }
+        .goog-tooltip { display: none !important; }
+        .goog-te-gadget-simple { display: none !important; }
 
         /* 애니메이션 */
         @keyframes fadeUp {
@@ -86,6 +88,7 @@
 </head>
 <body class="bg-white text-slate-800 antialiased selection:bg-gold-400 selection:text-white">
 
+    <!-- 구글 번역 요소 (숨김) -->
     <div id="google_translate_element"></div>
 
     <!-- Navigation -->
@@ -105,13 +108,28 @@
                     RESERVATION
                 </a>
                 
-                <!-- Languages -->
-                <div class="flex items-center gap-2 border-l pl-6 border-gray-200">
-                    <button onclick="changeLanguage('ko')" class="opacity-60 hover:opacity-100 transition"><img src="https://flagcdn.com/w40/kr.png" width="20" alt="KR"></button>
-                    <button onclick="changeLanguage('en')" class="opacity-60 hover:opacity-100 transition"><img src="https://flagcdn.com/w40/us.png" width="20" alt="EN"></button>
-                    <button onclick="changeLanguage('zh-CN')" class="opacity-60 hover:opacity-100 transition"><img src="https://flagcdn.com/w40/cn.png" width="20" alt="CN"></button>
+                <!-- Languages (일본어 버튼 추가됨) -->
+                <div class="flex items-center gap-3 border-l pl-6 border-gray-200">
+                    <button onclick="changeLanguage('ko')" class="opacity-60 hover:opacity-100 transition" title="한국어">
+                        <img src="https://flagcdn.com/w40/kr.png" width="24" class="rounded-sm shadow-sm" alt="KR">
+                    </button>
+                    <button onclick="changeLanguage('en')" class="opacity-60 hover:opacity-100 transition" title="English">
+                        <img src="https://flagcdn.com/w40/us.png" width="24" class="rounded-sm shadow-sm" alt="EN">
+                    </button>
+                    <!-- 일본어 버튼 -->
+                    <button onclick="changeLanguage('ja')" class="opacity-60 hover:opacity-100 transition" title="Japanese">
+                        <img src="https://flagcdn.com/w40/jp.png" width="24" class="rounded-sm shadow-sm" alt="JP">
+                    </button>
+                    <button onclick="changeLanguage('zh-CN')" class="opacity-60 hover:opacity-100 transition" title="Chinese">
+                        <img src="https://flagcdn.com/w40/cn.png" width="24" class="rounded-sm shadow-sm" alt="CN">
+                    </button>
                 </div>
             </nav>
+
+            <!-- Mobile Menu Button (Optional if needed for mobile layout) -->
+            <button class="lg:hidden text-navy-900">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
         </div>
     </header>
 
@@ -192,7 +210,7 @@
     <section id="reservation" class="py-24 bg-slate-50">
         <div class="container mx-auto px-4 max-w-5xl">
             <div class="bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row">
-                <!-- Form Header (Left on Desktop) -->
+                <!-- Form Header -->
                 <div class="bg-navy-900 text-white p-10 md:w-1/3 flex flex-col justify-center">
                     <h2 class="font-display text-3xl mb-4">Reservation</h2>
                     <p class="text-slate-300 font-light mb-8">
@@ -210,7 +228,7 @@
                     </div>
                 </div>
 
-                <!-- Inputs (Right) -->
+                <!-- Inputs -->
                 <div class="p-10 md:w-2/3">
                     <form onsubmit="sendEmail(event)" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -292,25 +310,39 @@
         </button>
     </div>
 
-    <!-- Script -->
+    <!-- Google Translate & Scripts -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'ko', includedLanguages: 'ko,en,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'ko', 
+                // ja (일본어) 포함됨
+                includedLanguages: 'ko,en,ja,zh-CN', 
+                autoDisplay: false
+            }, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
     <script>
+        // 언어 변경 함수
         function changeLanguage(lang) {
             const select = document.querySelector('.goog-te-combo');
-            if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
-            else { setTimeout(() => changeLanguage(lang), 500); }
+            if(select) { 
+                select.value = lang; 
+                select.dispatchEvent(new Event('change')); 
+            } else { 
+                // 로딩 안 됐을 시 재시도
+                setTimeout(() => changeLanguage(lang), 500); 
+            }
         }
 
+        // 이메일 전송 함수
         function sendEmail(e) {
             e.preventDefault();
             const getVal = (id) => document.getElementById(id).value;
             const subject = `[굿타임코리아] 예약 문의 - ${getVal('contact')}`;
             const body = `예약 정보\n\n날짜: ${getVal('date')}\n시간: ${getVal('time')}\n인원: ${getVal('passengers')}명\n짐: ${getVal('luggage')}개\n출발: ${getVal('pickup')}\n도착: ${getVal('dropoff')}\n연락처: ${getVal('contact')}`;
+            
             location.href = `mailto:lovepost@naver.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
     </script>
