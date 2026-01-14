@@ -2,31 +2,28 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" id="meta_viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="format-detection" content="telephone=no">
-    <title>굿타임코리아 (GOOD TIME KOREA)</title>
-    
-    <link rel="stylesheet" href="https://kcsrentcar.com/theme/basic/css/default.css?ver=2303229">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
+    <title>굿타임코리아 (GOOD TIME KOREA) - 프리미엄 의전 및 렌트카 서비스</title>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
     <style>
-        /* 구글 번역 툴바 및 안내문 강제 숨기기 */
-        body { top: 0 !important; position: static !important; }
+        /* 구글 번역 툴바 숨기기 및 기본 폰트 설정 */
+        body { top: 0 !important; position: static !important; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
         .goog-te-banner-frame.skiptranslate, .goog-te-balloon-frame, #goog-gt-tt { display: none !important; }
         .goog-te-spinner-pos { display: none !important; }
         #google_translate_element { display: none !important; }
         font { background-color: transparent !important; box-shadow: none !important; }
+        html { scroll-behavior: smooth; }
         .break-keep { word-break: keep-all; }
     </style>
 
     <script>
-        // 전역 네임스페이스 및 언어 설정
         (function(ns) {
-            ns.PAGE_LANG = 'ko';
-            ns.SUPPORT_LANGS = ['ko', 'en', 'ja', 'zh-CN'];
+            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
+            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
             try {
                 var saved = localStorage.getItem('site_lang');
                 if (!saved || saved === ns.PAGE_LANG) return;
@@ -40,230 +37,255 @@
 
 <body class="break-keep leading-[1.5] text-sm tracking-tight text-gray-700 md:text-base">
 
-<div class="fixed right-4 bottom-20 z-40">
-    <ul class="grid gap-3">
-        <li><a href='https://www.instagram.com/goodtimekorea/' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/instagram.png' class='w-full h-full object-cover'></a></li>
-        <li><a href='https://pf.kakao.com/_sdUgn/chat' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/kakaotalk.png' class='w-full h-full object-cover'></a></li>
-        <li><a href='https://wa.me/821054904740' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/whatsapp.png' class='w-full h-full object-cover'></a></li>
-        <li><a href='https://line.me/ti/p/yU-eOEy-v9' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/line.png' class='w-full h-full object-cover'></a></li>
-    </ul>
-</div>
-
-<header id="hd" class="fixed left-0 top-0 w-full bg-white shadow-sm z-[1000]">
-    <div class="hidden md:block border-b border-gray-50 bg-gray-50/50 px-4">
-        <div class="max-w-screen-xl mx-auto py-1.5 flex justify-end gap-5 text-[11px] font-medium text-gray-500">
-            <a href="#">로그인</a>
-            <a href="#">회원가입</a>
-        </div>
+    <div class="fixed right-4 bottom-20 z-40">
+        <ul class="grid gap-3">
+            <li><a href='https://www.instagram.com/goodtimekorea/' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/instagram.png' class='w-full h-full object-cover'></a></li>
+            <li><a href='https://pf.kakao.com/_sdUgn/chat' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/kakaotalk.png' class='w-full h-full object-cover'></a></li>
+            <li><a href='https://wa.me/821054904740' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/whatsapp.png' class='w-full h-full object-cover'></a></li>
+            <li><a href='https://line.me/ti/p/yU-eOEy-v9' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/line.png' class='w-full h-full object-cover'></a></li>
+        </ul>
     </div>
 
-    <div id="hd_wrapper" class="flex justify-between items-center max-w-screen-xl h-18 px-4 mx-auto md:h-22">
-        <div id="logo">
-            <a href="/" class="flex flex-col items-center text-[#0054A6]">
-                <span class="text-xl font-black leading-none md:text-2xl tracking-tighter uppercase">GOOD TIME KOREA</span>
-                <span class="text-[10px] tracking-[0.2em] font-bold md:text-[12px] uppercase opacity-70">굿타임코리아</span>
-            </a>
+    <header id="hd" class="fixed left-0 top-0 w-full bg-white shadow-sm z-[1000]">
+        <div class="hidden md:block border-b border-gray-50 bg-gray-50/50 px-4">
+            <div class="max-w-screen-xl mx-auto py-1.5 flex justify-end gap-5 text-[11px] font-medium text-gray-500">
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+            </div>
         </div>
 
-        <nav class="hidden md:block">
-            <ul class="flex items-center gap-2">
-                <li class='relative group'><a href='#' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>서비스 안내</a></li>
-                <li class='relative group'><a href='#' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>서비스 신청</a></li>
-                <li class='relative group'><a href='#' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>커뮤니티</a>
-                    <ul class='absolute hidden group-hover:block bg-white border border-gray-100 shadow-xl min-w-[160px] top-full left-1/2 -translate-x-1/2 py-2 rounded-b-lg border-t-2 border-t-[#0054A6]'>
-                        <li><a href='#' class='block px-4 py-2 text-sm text-center text-gray-600 hover:bg-blue-50'>공지사항</a></li>
-                        <li><a href='#' class='block px-4 py-2 text-sm text-center text-gray-600 hover:bg-blue-50'>리뷰게시판</a></li>
+        <div id="hd_wrapper" class="flex justify-between items-center max-w-screen-xl h-18 px-4 mx-auto md:h-22">
+            <div id="logo">
+                <a href="/" class="flex flex-col items-center text-[#0054A6]">
+                    <span class="text-xl font-black leading-none md:text-2xl tracking-tighter uppercase">GOOD TIME KOREA</span>
+                    <span class="text-[10px] tracking-[0.2em] font-bold md:text-[12px] uppercase opacity-70">굿타임코리아</span>
+                </a>
+            </div>
+
+            <nav class="hidden md:block">
+                <ul class="flex items-center gap-2">
+                    <li class='relative group'><a href='#' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>서비스 안내</a></li>
+                    <li class='relative group'><a href='#' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>서비스 신청</a></li>
+                    <li class='relative group'><a href='#' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>커뮤니티</a>
+                        <ul class='absolute hidden group-hover:block bg-white border border-gray-100 shadow-xl min-w-[160px] top-full left-1/2 -translate-x-1/2 py-2 rounded-b-lg border-t-2 border-t-[#0054A6]'>
+                            <li><a href='#' class='block px-4 py-2 text-sm text-center text-gray-600 hover:bg-blue-50'>공지사항</a></li>
+                            <li><a href='#' class='block px-4 py-2 text-sm text-center text-gray-600 hover:bg-blue-50'>리뷰게시판</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <div class="relative" id="lang_select_box">
+                    <button type="button" id="lang_btn" class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-full bg-white text-xs font-bold shadow-sm cursor-pointer">
+                        <img id="active_flag" src="https://flagcdn.com/w20/kr.png" class="w-4 md:w-5">
+                        <span id="active_lang_text" class="hidden sm:inline">한국어</span>
+                    </button>
+                    <div id="lang_list" class="hidden absolute right-0 mt-2 w-36 bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden ring-1 ring-black/5">
+                        <button onclick="changeLang('ko')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/kr.png" class="w-5"> 한국어</button>
+                        <button onclick="changeLang('en')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/us.png" class="w-5"> English</button>
+                        <button onclick="changeLang('ja')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/jp.png" class="w-5"> 日本語</button>
+                        <button onclick="changeLang('zh-CN')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/cn.png" class="w-5"> 简体中文</button>
+                    </div>
+                </div>
+                <button class="gnb_menu_btn md:hidden p-1 text-gray-700 cursor-pointer">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <div id="gnb_all" class="fixed top-0 -right-80 w-80 h-full bg-white z-[2000] shadow-2xl transition-all duration-300 flex flex-col">
+        <div class="p-6 bg-[#0054A6] text-white">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <p class="text-sm opacity-70">안녕하세요!</p>
+                    <p class="text-lg font-bold uppercase">GOOD TIME KOREA</p>
+                </div>
+                <button class="gnb_close_btn p-1 cursor-pointer"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5"/></svg></button>
+            </div>
+            <div class="flex gap-2">
+                <a href="#" class="flex-1 bg-white text-[#0054A6] py-2 rounded text-center text-xs font-bold">로그인</a>
+                <a href="#" class="flex-1 bg-white/10 py-2 rounded text-center text-[11px] border border-white/20">회원가입</a>
+            </div>
+        </div>
+        <div class="flex-1 overflow-y-auto">
+            <ul class="py-2">
+                <li class="border-b border-gray-50">
+                    <a href="#" class="block px-6 py-4 font-bold text-gray-800">서비스 안내</a>
+                </li>
+                <li class="border-b border-gray-50">
+                    <a href="#" class="block px-6 py-4 font-bold text-gray-800">서비스 신청</a>
+                </li>
+                <li class="border-b border-gray-50">
+                    <a href="#" class="block px-6 py-4 font-bold text-gray-800">커뮤니티</a>
+                    <ul class="bg-gray-50 py-1">
+                        <li><a href="#" class="block px-10 py-3 text-sm text-gray-600">공지사항</a></li>
+                        <li><a href="#" class="block px-10 py-3 text-sm text-gray-600">리뷰게시판</a></li>
                     </ul>
                 </li>
             </ul>
-        </nav>
+        </div>
+    </div>
+    <div id="gnb_all_bg" class="invisible fixed inset-0 bg-black/50 z-[1500] opacity-0 transition-all duration-300"></div>
 
-        <div class="flex items-center gap-3">
-            <div class="relative" id="lang_select_box">
-                <button type="button" id="lang_btn" class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-full bg-white text-xs font-bold shadow-sm cursor-pointer">
-                    <img id="active_flag" src="https://flagcdn.com/w20/kr.png" class="w-4 md:w-5">
-                    <span id="active_lang_text" class="hidden sm:inline">한국어</span>
-                </button>
-                <div id="lang_list" class="hidden absolute right-0 mt-2 w-36 bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden ring-1 ring-black/5">
-                    <button onclick="changeLang('ko')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/kr.png" class="w-5"> 한국어</button>
-                    <button onclick="changeLang('en')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/us.png" class="w-5"> English</button>
-                    <button onclick="changeLang('ja')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/jp.png" class="w-5"> 日本語</button>
-                    <button onclick="changeLang('zh-CN')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 cursor-pointer"><img src="https://flagcdn.com/w20/cn.png" class="w-5"> 简体中文</button>
+    <div id="wrapper" class="pt-18 md:pt-28">
+        <div id="container">
+            <div class="flex flex-col justify-center items-center gap-10 aspect-square px-4 mb-12 bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/idx_bg.jpg')] bg-cover bg-center bg-blend-multiply text-center text-white md:aspect-auto md:h-118 md:mb-16">
+                <div class="flex flex-col gap-2">
+                    <strong class="text-[28px] !leading-[1.25] md:text-4xl uppercase">GOOD TIME KOREA</strong>
+                    <strong class="text-[20px] md:text-3xl">전문 기사님과 함께<br>편안하고 행복한 여행을 시작하세요</strong>
+                    <p class="text-lg md:text-xl">굿타임코리아는 고객님을 위해<br class="md:hidden"><span class="hidden md:inline">&nbsp;</span>언제나 최선을 다하겠습니다.</p>
+                </div>
+                <a href="#" class="inline-block px-12 leading-12 font-bold text-lg bg-white text-[#0054A6] rounded-full shadow hover:bg-gray-100 transition">상담 신청하기</a>
+            </div>
+
+            <div class="flex flex-col w-full max-w-screen-xl mx-auto text-center">
+                <section class="flex flex-col gap-12 px-4 mb-15 md:gap-16 md:mb-20">
+                    <h2 class="font-medium text-xl md:text-[28px]">굿타임코리아의 프리미엄 서비스</h2>
+                    <ul class="grid gap-10 md:grid-cols-3 md:text-sm">
+                        <li class="flex flex-col items-center gap-2.5 px-5">
+                            <i class="fa-solid fa-users text-4xl text-gray-400 mb-2"></i>
+                            <h3 class="font-medium text-lg md:text-2xl">기업 및 외교 의전</h3>
+                            <p>비즈니스 임원과 기업 고객, 외교관, 대사관 방문 귀빈 등을 위한<br>전문적이고 신뢰할 수 있는 의전 서비스를 제공합니다.</p>
+                        </li>
+                        <li class="flex flex-col items-center gap-2.5 px-5">
+                            <i class="fa-solid fa-wine-glass text-4xl text-gray-400 mb-2"></i>
+                            <h3 class="font-medium text-lg md:text-2xl">특별 행사 의전</h3>
+                            <p>콘서트, 스포츠 행사, 결혼식, 파티 등을 위한 프리미엄 서비스로<br>다양한 차량 옵션과 함께 이벤트를 잊지 못할 순간으로 만듭니다.</p>
+                        </li>
+                        <li class="flex flex-col items-center gap-2.5 px-5">
+                            <i class="fa-solid fa-cable-car text-4xl text-gray-400 mb-2"></i>
+                            <h3 class="font-medium text-lg md:text-2xl">프라이빗 투어</h3>
+                            <p>도시의 랜드마크와 명소를 투어하는 서비스로<br>기사와 전문 가이드, 맞춤형 일정으로 독점적인 여행 경험을 제공합니다.</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="flex flex-col gap-12 mb-20">
+                    <section class="flex flex-col gap-9">
+                        <header>
+                            <h2 class="font-medium text-xl md:text-[28px]">기사 포함 렌트카 대절</h2>
+                            <p class="md:text-lg">굿타임코리아에서 투어 가능한 도시입니다.</p>
+                        </header>
+                        <ul class="md:grid md:grid-cols-3 px-4 gap-4">
+                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/seoul.jpg')] bg-center bg-cover bg-blend-multiply rounded-lg overflow-hidden group">
+                                <a href="#" class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white shadow text-center group-hover:bg-white/10 transition">
+                                    <span class="text-lg font-semibold">서울 투어</span>
+                                    <span class="opacity-80 mt-1 text-sm">광화문, 남산, 명동 시내투어</span>
+                                </a>
+                            </li>
+                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/capital.jpg')] bg-center bg-cover bg-blend-multiply rounded-lg overflow-hidden group">
+                                <a href="#" class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white shadow text-center group-hover:bg-white/10 transition">
+                                    <span class="text-lg font-semibold">경기 투어</span>
+                                    <span class="opacity-80 mt-1 text-sm">가평, DMZ, 에버랜드 등 지역투어</span>
+                                </a>
+                            </li>
+                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/provinces.jpg')] bg-center bg-cover bg-blend-multiply rounded-lg overflow-hidden group">
+                                <a href="#" class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white shadow text-center group-hover:bg-white/10 transition">
+                                    <span class="text-lg font-semibold">전국 투어</span>
+                                    <span class="opacity-80 mt-1 text-sm">설악산, 부산, 안동, 스키 투어</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
                 </div>
             </div>
-            <button class="gnb_menu_btn md:hidden p-1 text-gray-700 cursor-pointer"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg></button>
         </div>
     </div>
-</header>
 
-<div id="google_translate_element" style="display:none;"></div>
-
-<div id="gnb_all" class="fixed top-0 -right-80 w-80 h-full bg-white z-[2000] shadow-2xl transition-all duration-300 flex flex-col">
-    <div class="p-6 bg-[#0054A6] text-white">
-        <div class="flex justify-between items-start mb-6">
-            <div><p class="text-sm opacity-70">안녕하세요!</p><p class="text-lg font-bold uppercase">GOOD TIME KOREA</p></div>
-            <button class="gnb_close_btn p-1 cursor-pointer"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5"/></svg></button>
+    <footer id="ft" class="mt-15 border-t border-gray-200 text-center md:text-sm bg-white">
+        <div id="ft_wr" class="relative">
+            <div id="ft_link" class="flex justify-center gap-3 py-1 border-b border-gray-200 md:gap-5">
+                <a href="#" class="block leading-loose hover:underline">개인정보처리방침</a>
+                <a href="#" class="block leading-loose hover:underline">서비스이용약관</a>
+            </div>
+            <div id="ft_company" class="py-10 px-4">
+                <div class="flex flex-col gap-5">
+                    <div id="ft_catch" class="flex flex-col items-center gap-1 text-[#0054A6]">
+                        <span class="leading-none font-black text-xl md:text-2xl uppercase">GOOD TIME KOREA</span>
+                        <span class="leading-none text-[13px] tracking-[0.075em] md:text-base font-bold">굿타임코리아</span>
+                    </div>
+                    <p class="ft_info text-gray-500 leading-relaxed text-center inline-block">
+                        상호명 : 굿타임코리아 <span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span> 대표자 : 김세경 <br class="md:hidden">
+                        사업자등록번호 : 779-81-03233 <br>
+                        주소 : 서울특별시 강서구 방화동로3길 23, 3층 304호(방화동) <br>
+                        이메일 : lovepost@naver.com <span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span> 
+                        전화 : 032-746-4448 / +82 10 5490 4740 <br class="md:hidden">
+                        팩스 : 032-746-4449
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="flex gap-2">
-            <a href="#" class="flex-1 bg-white text-[#0054A6] py-2 rounded text-center text-xs font-bold shadow">로그인</a>
-            <a href="#" class="flex-1 bg-white/10 py-2 rounded text-center text-[11px] border border-white/20">회원가입</a>
-        </div>
-    </div>
-    <div class="flex-1 overflow-y-auto">
-        <ul class="py-2 text-gray-800">
-            <li class="border-b border-gray-50"><a href="#" class="block px-6 py-4 font-bold">서비스 안내</a></li>
-            <li class="border-b border-gray-50"><a href="#" class="block px-6 py-4 font-bold">서비스 신청</a></li>
-            <li class="border-b border-gray-50"><a href="#" class="block px-6 py-4 font-bold">커뮤니티</a>
-                <ul class="bg-gray-50 py-1 text-gray-600">
-                    <li><a href="#" class="block px-10 py-3 text-sm">공지사항</a></li>
-                    <li><a href="#" class="block px-10 py-3 text-sm">리뷰게시판</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</div>
-<div id="gnb_all_bg" class="invisible fixed inset-0 bg-black/50 z-[1500] opacity-0 transition-all duration-300"></div>
-
-<div id="wrapper" class="pt-18 md:pt-28">
-    <div id="container">
-        <div class="flex flex-col justify-center items-center gap-10 aspect-square px-4 mb-12 bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/idx_bg.jpg')] bg-cover bg-center bg-blend-multiply text-center text-white md:aspect-auto md:h-118 md:mb-16">
-          <div class="flex flex-col gap-2">
-            <strong class="text-[28px] !leading-[1.25] md:text-4xl uppercase">GOOD TIME KOREA</strong>
-            <p class="text-lg md:text-xl font-light">전문 기사님과 함께 편안하고 행복한 여행을 시작하세요.<br>굿타임코리아는 고객님을 위해 언제나 최선을 다하겠습니다.</p>
-          </div>
-          <a href="#" class="inline-block px-12 leading-12 font-bold text-lg bg-white text-[#0054A6] rounded-full shadow hover:scale-105 transition-transform">상담 신청하기</a>
+        <div id="ft_copy" class="px-4 py-7 border-t border-gray-200 text-gray-400 text-xs">
+            Copyright &copy; 굿타임코리아. All rights reserved.
         </div>
 
-        <div class="flex flex-col w-full max-w-screen-xl mx-auto text-center">
-          <section class="flex flex-col gap-12 px-4 mb-15 md:gap-16 md:mb-20">
-            <h2 class="font-medium text-xl md:text-[28px]">굿타임코리아의 프리미엄 서비스</h2>
-            <ul class="grid gap-10 md:grid-cols-3 md:text-sm">
-              <li class="flex flex-col items-center gap-2.5 px-5">
-                <i class="fa-solid fa-users text-4xl text-[#0054A6] mb-2"></i>
-                <h3 class="font-medium text-lg md:text-2xl">기업 및 외교 의전</h3>
-                <p>비즈니스 임원과 외교관 방문 귀빈 등을 위한<br>전문적이고 신뢰할 수 있는 의전 서비스를 제공합니다.</p>
-              </li>
-              <li class="flex flex-col items-center gap-2.5 px-5">
-                <i class="fa-solid fa-wine-glass text-4xl text-[#0054A6] mb-2"></i>
-                <h3 class="font-medium text-lg md:text-2xl">특별 행사 의전</h3>
-                <p>콘서트, 스포츠 행사, 결혼식 등 프리미엄 서비스로<br>이벤트를 잊지 못할 순간으로 만듭니다.</p>
-              </li>
-              <li class="flex flex-col items-center gap-2.5 px-5">
-                <i class="fa-solid fa-cable-car text-4xl text-[#0054A6] mb-2"></i>
-                <h3 class="font-medium text-lg md:text-2xl">프라이빗 투어</h3>
-                <p>도시의 랜드마크 투어 서비스로<br>전문 투어 가이드와 함께 독점적인 경험을 제공합니다.</p>
-              </li>
-            </ul>
-          </section>
+        <button type="button" id="top_btn" class="fixed right-4 bottom-4 w-12 h-12 leading-10 bg-white/80 border-2 border-gray-700 text-center z-20 rounded shadow cursor-pointer hover:bg-gray-100">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+    </footer>
 
-          <div class="flex flex-col gap-12 px-4 mb-20">
-            <section class="flex flex-col gap-9">
-              <header>
-                <h2 class="font-medium text-xl md:text-[28px]">기사 포함 서비스 대절</h2>
-                <p class="md:text-lg">굿타임코리아와 함께 투어 가능한 주요 코스입니다.</p>
-              </header>
-              <ul class="grid gap-4 md:grid-cols-3">
-                <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/seoul.jpg')] bg-center bg-cover bg-blend-multiply rounded-lg">
-                  <div class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white">
-                    <span class="text-lg font-semibold">서울 시내 투어</span>
-                    <span class="opacity-80 mt-1 text-sm">광화문, 남산, 명동 등</span>
-                  </div>
-                </li>
-                <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/capital.jpg')] bg-center bg-cover bg-blend-multiply rounded-lg">
-                  <div class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white">
-                    <span class="text-lg font-semibold">수도권 투어</span>
-                    <span class="opacity-80 mt-1 text-sm">가평, DMZ, 에버랜드 등</span>
-                  </div>
-                </li>
-                <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/provinces.jpg')] bg-center bg-cover bg-blend-multiply rounded-lg">
-                  <div class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white">
-                    <span class="text-lg font-semibold">전국 지역 투어</span>
-                    <span class="opacity-80 mt-1 text-sm">설악산, 부산, 안동 등</span>
-                  </div>
-                </li>
-              </ul>
-            </section>
-          </div>
-        </div>
-    </div>
-</div>
+    <script>
+        function setTransCookie(lang) {
+            var cookieVal = "/ko/" + lang;
+            var date = new Date();
+            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+            document.cookie = "googtrans=" + cookieVal + "; expires=" + date.toUTCString() + "; path=/;";
+        }
 
-<footer id="ft" class="mt-15 border-t border-gray-200 text-center md:text-sm bg-white">
-  <div id="ft_wr" class="relative">
-    <div id="ft_link" class="flex justify-center gap-3 py-4 border-b border-gray-100 md:gap-10">
-      <a href="#" class="block font-medium">개인정보처리방침</a>
-      <a href="#" class="block font-medium">서비스이용약관</a>
-    </div>
-    <div id="ft_company" class="py-12 px-4">
-      <div class="flex flex-col gap-6">
-        <div id="ft_catch" class="flex flex-col items-center gap-1 text-[#0054A6]">
-          <span class="leading-none font-black text-xl md:text-2xl uppercase">GOOD TIME KOREA</span>
-          <span class="leading-none text-[13px] tracking-[0.075em] md:text-base font-bold">굿타임코리아</span>
-        </div>
-        <p class="text-gray-500 leading-relaxed">
-          상호명 : 굿타임코리아<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-          대표자 : 김세경<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-          사업자등록번호 : 779-81-03233<br>
-          주소 : 서울특별시 강서구 방화동로3길 23, 3층 304호(방화동)<br>
-          이메일 : lovepost@naver.com<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-          전화 : 032-746-4448 / +82 10 5490 4740<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-          팩스 : 032-746-4449
-        </p>
-      </div>
-    </div>
-  </div>
-  <div id="ft_copy" class="px-4 py-7 border-t border-gray-100 text-gray-400 text-xs uppercase">
-    Copyright &copy; GOOD TIME KOREA. All rights reserved.
-  </div>
+        function changeLang(lang) {
+            localStorage.setItem('selected_lang', lang);
+            if (lang === 'ko') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            } else {
+                setTransCookie(lang);
+            }
+            location.reload();
+        }
 
-  <button type="button" id="top_btn" class="fixed right-4 bottom-4 w-12 h-12 leading-10 bg-white/80 border border-gray-200 text-center z-20 rounded shadow-md cursor-pointer hover:bg-gray-100">
-    <i class="fa fa-arrow-up"></i>
-  </button>
-</footer>
+        function updateUI() {
+            const saved = localStorage.getItem('selected_lang') || 'ko';
+            const langData = {
+                'ko': { flag: 'kr', text: '한국어' },
+                'en': { flag: 'us', text: 'English' },
+                'ja': { flag: 'jp', text: '日本語' },
+                'zh-CN': { flag: 'cn', text: '简体中文' }
+            };
+            const item = langData[saved] || langData['ko'];
+            $('#active_flag').attr('src', 'https://flagcdn.com/w20/' + item.flag + '.png');
+            $('#active_lang_text').text(item.text);
+        }
 
-<script>
-    function changeLang(lang) {
-        localStorage.setItem('selected_lang', lang);
-        var cookieVal = "/ko/" + lang;
-        var date = new Date();
-        date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-        document.cookie = "googtrans=" + cookieVal + "; expires=" + date.toUTCString() + "; path=/;";
-        location.reload();
-    }
+        $(function() {
+            updateUI();
+            $("#lang_btn").click(function(e) { e.stopPropagation(); $("#lang_list").toggleClass("hidden"); });
+            $(document).click(function() { $("#lang_list").addClass("hidden"); });
 
-    function updateUI() {
-        const saved = localStorage.getItem('selected_lang') || 'ko';
-        const langData = {
-            'ko': { flag: 'kr', text: '한국어' },
-            'en': { flag: 'us', text: 'English' },
-            'ja': { flag: 'jp', text: '日本語' },
-            'zh-CN': { flag: 'cn', text: '简体中文' }
-        };
-        const item = langData[saved] || langData['ko'];
-        $('#active_flag').attr('src', 'https://flagcdn.com/w20/' + item.flag + '.png');
-        $('#active_lang_text').text(item.text);
-    }
+            $(".gnb_menu_btn").click(function() {
+                $("#gnb_all_bg").removeClass("invisible opacity-0").addClass("visible opacity-100");
+                $("#gnb_all").removeClass("-right-80").addClass("right-0");
+            });
+            $(".gnb_close_btn, #gnb_all_bg").click(function() {
+                $("#gnb_all").removeClass("right-0").addClass("-right-80");
+                $("#gnb_all_bg").removeClass("visible opacity-100").addClass("invisible opacity-0");
+            });
 
-    $(function() {
-        updateUI();
-        $("#lang_btn").click(function(e) { e.stopPropagation(); $("#lang_list").toggleClass("hidden"); });
-        $(document).click(function() { $("#lang_list").addClass("hidden"); });
-        $(".gnb_menu_btn").click(function() {
-            $("#gnb_all_bg").removeClass("invisible opacity-0").addClass("visible opacity-100");
-            $("#gnb_all").removeClass("-right-80").addClass("right-0");
+            $("#top_btn").on("click", function() {
+                $("html, body").animate({ scrollTop: 0 }, '500');
+                return false;
+            });
         });
-        $(".gnb_close_btn, #gnb_all_bg").click(function() {
-            $("#gnb_all").removeClass("right-0").addClass("-right-80");
-            $("#gnb_all_bg").removeClass("visible opacity-100").addClass("invisible opacity-0");
-        });
-        $("#top_btn").on("click", function() { $("html, body").animate({ scrollTop: 0 }, '500'); });
-    });
 
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({ pageLanguage: 'ko', autoDisplay: false }, 'google_translate_element');
-    }
-</script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ko',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
