@@ -1,604 +1,679 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="format-detection" content="telephone=no">
-    <title>굿타임코리아</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>굿타임코리아 | VVIP 프리미엄 의전 & 리무진 서비스</title>
+    <meta name="description" content="최상의 편안함과 품격을 제공하는 굿타임코리아. 공항 픽업, 골프 투어, VIP 의전 서비스.">
     
-    <link rel="stylesheet" href="https://kcsrentcar.com/theme/basic/css/default.css?ver=2303229">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css" integrity="sha512-pmAAV1X4Nh5jA9m+jcvwJXFQvCBi3T17aZ1KWkqXr7g/O2YMvO8rfaa5ETWDuBvRq6fbDjlw4jHL44jNTScaKg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <script src="https://kcsrentcar.com/js/jquery-1.12.4.min.js?ver=2304171"></script>
-    <script src="https://kcsrentcar.com/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
-
-    <style>
-        /* 구글 번역 툴바 및 안내문 강제 숨기기 */
-        body { top: 0 !important; position: static !important; }
-        .goog-te-banner-frame.skiptranslate, .goog-te-balloon-frame, #goog-gt-tt { display: none !important; }
-        .goog-te-spinner-pos { display: none !important; }
-        #google_translate_element { display: none !important; }
-        font { background-color: transparent !important; box-shadow: none !important; }
-        
-        /* 추가 스타일 보정 */
-        .break-keep { word-break: keep-all; }
-    </style>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-    (function(ns) {
-        ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
-        ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
-        try {
-            var saved = localStorage.getItem('site_lang');
-            if (!saved || saved === ns.PAGE_LANG) return;
-            var want = '/' + ns.PAGE_LANG + '/' + saved;
-            var raw = document.cookie.split('; ').find(function(x) { return x.indexOf('googtrans=') === 0; });
-            var now = raw ? decodeURIComponent(raw.split('=')[1]) : '';
-            if (now === want) return;
-            var maxAge = 60 * 60 * 24 * 365;
-            document.cookie = 'googtrans=' + want + '; path=/; max-age=' + maxAge;
-        } catch (e) {}
-    })(window.__gt = window.__gt || {});
+        tailwind.config = {
+            darkMode: 'class', // 다크모드 활성화
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Noto Serif KR"', 'serif'],
+                        display: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        gold: {
+                            100: '#F9F1D8',
+                            300: '#E6C874',
+                            400: '#D4AF37', // Classic Gold
+                            500: '#C5A028',
+                            600: '#B45309',
+                        },
+                        navy: {
+                            800: '#1E293B',
+                            900: '#0F172A', 
+                            950: '#020617', // Deepest Navy
+                        },
+                        dark: {
+                            bg: '#0B1120', // Eye-comfort Dark Background
+                            card: '#161F32',
+                            border: '#1E293B'
+                        }
+                    },
+                    boxShadow: {
+                        'luxury': '0 20px 40px -15px rgba(15, 23, 42, 0.15)',
+                        'glow': '0 0 20px rgba(212, 175, 55, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 기본 설정 및 트랜지션 */
+        body { 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* 다크모드에서의 스크롤바 커스텀 */
+        .dark ::-webkit-scrollbar { width: 10px; }
+        .dark ::-webkit-scrollbar-track { background: #0F172A; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* 럭셔리 배경 효과 */
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1562426503-12e6fd634081?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* 구글 번역바 숨김 */
+        .goog-te-banner-frame.skiptranslate { display: none !important; } 
+        body { top: 0px !important; } 
+        #google_translate_element { display: none; }
+
+        /* 애니메이션 */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeUp 1s cubic-bezier(0.2, 1, 0.3, 1) forwards; opacity: 0; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* 입력 폼 커스텀 (밑줄형 럭셔리 스타일) */
+        .luxury-input {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #E2E8F0;
+            transition: all 0.4s ease;
+            padding: 0.75rem 0;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .dark .luxury-input { border-bottom-color: #334155; color: #F1F5F9; }
+        .luxury-input:focus {
+            border-bottom-color: #D4AF37;
+            box-shadow: none;
+            outline: none;
+        }
+        .luxury-input::placeholder { color: #94a3b8; font-weight: 300; }
+        .dark .luxury-input::placeholder { color: #64748B; }
+
+        /* Swiper 커스텀 스타일 */
+        .swiper-pagination-bullet { background: #cbd5e1; opacity: 1; width: 8px; height: 8px; margin: 0 6px !important; }
+        .dark .swiper-pagination-bullet { background: #475569; }
+        .swiper-pagination-bullet-active { background-color: #D4AF37 !important; transform: scale(1.2); }
+        
+        /* 카드 호버 효과 */
+        .fleet-card { transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s; }
+        .fleet-card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .dark .fleet-card:hover { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+    </style>
+    
+    <!-- 초기 테마 설정 스크립트 (깜빡임 방지) -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
     </script>
 </head>
+<body class="bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-slate-200 antialiased selection:bg-navy-900 selection:text-gold-400 dark:selection:bg-gold-500 dark:selection:text-navy-950">
 
-<body class="break-keep leading-[1.5] text-sm tracking-tight text-gray-700 md:text-base">
+    <div id="google_translate_element"></div>
 
-    <div class="fixed right-4 bottom-20 z-40">
-        <ul class="grid gap-3">
-            <li><a href='https://www.instagram.com/goodtimekorea/' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/instagram.png' class='w-full h-full object-cover'></a></li>
-            <li><a href='https://pf.kakao.com/_sdUgn/chat' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/kakaotalk.png' class='w-full h-full object-cover'></a></li>
-            <li><a href='https://wa.me/821054904740' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/whatsapp.png' class='w-full h-full object-cover'></a></li>
-            <li><a href='https://line.me/ti/p/yU-eOEy-v9' target='_blank' class='block w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 transition-transform overflow-hidden'><img src='https://kcsrentcar.com/theme/basic/img/line.png' class='w-full h-full object-cover'></a></li>
-        </ul>
-    </div>
+    <!-- Header -->
+    <header class="fixed w-full z-50 transition-all duration-300 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100/50 dark:border-white/5" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex flex-col group">
+                <span class="font-display text-2xl font-bold text-navy-950 dark:text-white tracking-wide transition-colors">GOOD TIME KOREA</span>
+                <span class="text-[10px] text-gold-600 dark:text-gold-400 font-bold tracking-[0.35em] uppercase mt-0.5">Premium Limousine Service</span>
+            </a>
 
-    <header id="hd" class="fixed left-0 top-0 w-full bg-white shadow-sm z-[1000]">
-        <div class="hidden md:block border-b border-gray-50 bg-gray-50/50 px-4">
-            <div class="max-w-screen-xl mx-auto py-1.5 flex justify-end gap-5 text-[11px] font-medium text-gray-500">
-                <a href="https://kcsrentcar.com/bbs/login.php">로그인</a>
-                <a href="https://kcsrentcar.com/bbs/register.php">회원가입</a>
-            </div>
-        </div>
-
-        <div id="hd_wrapper" class="flex justify-between items-center max-w-screen-xl h-18 px-4 mx-auto md:h-22">
-            <div id="logo">
-                <a href="https://kcsrentcar.com" class="flex flex-col items-center text-[#0054A6]">
-                    <span class="text-xl font-black leading-none md:text-2xl tracking-tighter">굿타임코리아</span>
-                    <span class="text-[10px] tracking-[0.2em] font-bold md:text-[12px] uppercase opacity-70">GOOD TIME KOREA</span>
+            <nav class="hidden lg:flex items-center gap-12">
+                <a href="#about" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Service</a>
+                <a href="#vehicles" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Fleet</a>
+                <a href="#process" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Guide</a>
+                <a href="#reservation" class="px-8 py-3 bg-navy-950 dark:bg-white dark:text-navy-950 text-white text-xs font-bold tracking-[0.15em] hover:bg-gold-600 dark:hover:bg-gold-400 dark:hover:text-white transition duration-500 uppercase">
+                    Reservation
                 </a>
-            </div>
-
-            <nav class="hidden md:block">
-                <ul class="flex items-center gap-2">
-                    <li class='relative group'><a href='https://kcsrentcar.com/bbs/board.php?bo_table=info' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>서비스 안내</a></li>
-                    <li class='relative group'><a href='https://kcsrentcar.com/bbs/write.php?bo_table=apply' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>서비스 신청</a></li>
-                    <li class='relative group'><a href='https://kcsrentcar.com/bbs/board.php?bo_table=notice' class='px-6 py-4 font-bold text-gray-700 hover:text-[#0054A6]'>커뮤니티</a>
-                        <ul class='absolute hidden group-hover:block bg-white border border-gray-100 shadow-xl min-w-[160px] top-full left-1/2 -translate-x-1/2 py-2 rounded-b-lg border-t-2 border-t-[#0054A6]'>
-                            <li><a href='https://kcsrentcar.com/bbs/board.php?bo_table=notice' class='block px-4 py-2 text-sm text-center text-gray-600 hover:bg-blue-50'>공지사항</a></li>
-                            <li><a href='https://kcsrentcar.com/bbs/board.php?bo_table=review' class='block px-4 py-2 text-sm text-center text-gray-600 hover:bg-blue-50'>리뷰게시판</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <div class="relative" id="lang_select_box">
-                    <button type="button" id="lang_btn" class="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-full bg-white text-xs font-bold shadow-sm">
-                        <img id="active_flag" src="https://flagcdn.com/w20/kr.png" class="w-4 md:w-5">
-                        <span id="active_lang_text" class="hidden sm:inline">한국어</span>
-                    </button>
-                    <div id="lang_list" class="hidden absolute right-0 mt-2 w-36 bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden ring-1 ring-black/5">
-                        <button onclick="changeLang('ko')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50"><img src="https://flagcdn.com/w20/kr.png" class="w-5"> 한국어</button>
-                        <button onclick="changeLang('en')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50"><img src="https://flagcdn.com/w20/us.png" class="w-5"> English</button>
-                        <button onclick="changeLang('ja')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50 border-b border-gray-50"><img src="https://flagcdn.com/w20/jp.png" class="w-5"> 日本語</button>
-                        <button onclick="changeLang('zh-CN')" class="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-gray-50"><img src="https://flagcdn.com/w20/cn.png" class="w-5"> 简体中文</button>
+                
+                <div class="flex items-center gap-6 border-l pl-8 border-gray-200 dark:border-white/10">
+                    <!-- Language Icons -->
+                    <div class="flex items-center gap-3">
+                        <button onclick="changeLanguage('ko')" class="opacity-40 hover:opacity-100 dark:opacity-50 dark:hover:opacity-100 transition duration-300 transform hover:scale-110" title="Korean"><img src="https://flagcdn.com/w40/kr.png" width="20" alt="KR" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('en')" class="opacity-40 hover:opacity-100 dark:opacity-50 dark:hover:opacity-100 transition duration-300 transform hover:scale-110" title="English"><img src="https://flagcdn.com/w40/us.png" width="20" alt="EN" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('ja')" class="opacity-40 hover:opacity-100 dark:opacity-50 dark:hover:opacity-100 transition duration-300 transform hover:scale-110" title="Japanese"><img src="https://flagcdn.com/w40/jp.png" width="20" alt="JP" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('zh-CN')" class="opacity-40 hover:opacity-100 dark:opacity-50 dark:hover:opacity-100 transition duration-300 transform hover:scale-110" title="Chinese"><img src="https://flagcdn.com/w40/cn.png" width="20" alt="CN" class="shadow-sm"></button>
                     </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="text-slate-500 dark:text-gold-400 hover:text-gold-600 dark:hover:text-white transition-colors duration-300 p-1 rounded-full focus:outline-none" title="Toggle Dark Mode">
+                        <!-- Sun Icon (Show in Dark Mode) -->
+                        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+                        <!-- Moon Icon (Show in Light Mode) -->
+                        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
                 </div>
-                <button class="gnb_menu_btn md:hidden p-1 text-gray-700"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg></button>
-            </div>
+            </nav>
         </div>
     </header>
 
-    <div id="google_translate_element" style="display:none;"></div>
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[700px] flex items-center justify-center hero-bg">
+        <!-- Overlay: Darker in dark mode -->
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-900/50 to-navy-950/90 dark:from-black/80 dark:via-black/60 dark:to-dark-bg"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto text-white mt-16">
+            <div class="inline-block border-b border-gold-400/60 pb-2 mb-8 animate-fade-up">
+                <p class="text-gold-300 font-bold tracking-[0.25em] text-xs md:text-sm uppercase">
+                    VVIP Protocol & Limousine
+                </p>
+            </div>
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-medium mb-10 leading-tight animate-fade-up delay-200 tracking-tight text-white dark:text-gray-100">
+                Beyond <span class="text-gold-400 italic font-serif">Luxury</span>, <br>
+                For Your <span class="italic font-serif">Precious</span> Time.
+            </h1>
+            <p class="font-light text-slate-200 dark:text-slate-300 text-lg md:text-xl mb-14 animate-fade-up delay-400 max-w-2xl mx-auto leading-relaxed">
+                굿타임코리아는 단순한 이동 수단이 아닙니다.<br>
+                당신의 품격에 걸맞은 완벽한 편안함을 약속합니다.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-up delay-600">
+                <a href="#reservation" class="bg-gold-500 text-white px-10 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-navy-950 dark:hover:bg-dark-card dark:hover:text-white transition duration-500 shadow-2xl">
+                    Book Now
+                </a>
+                <a href="tel:01054904740" class="border border-white/30 bg-white/5 backdrop-blur-sm text-white px-10 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-navy-950 dark:hover:bg-dark-card dark:hover:text-white transition duration-500">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
 
-    <div id="gnb_all" class="fixed top-0 -right-80 w-80 h-full bg-white z-[2000] shadow-2xl transition-all duration-300 flex flex-col">
-        <div class="p-6 bg-[#0054A6] text-white">
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <p class="text-sm opacity-70">로그인이 필요합니다</p>
-                    <p class="text-lg font-bold">안녕하세요!</p>
-                </div>
-                <button class="gnb_close_btn p-1"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5"/></svg></button>
-            </div>
-            <div class="flex gap-2">
-                <a href="https://kcsrentcar.com/bbs/login.php" class="flex-1 bg-white text-[#0054A6] py-2 rounded text-center text-xs font-bold">로그인</a>
-                <a href="https://kcsrentcar.com/bbs/register.php" class="flex-1 bg-white/10 py-2 rounded text-center text-[11px] border border-white/20">회원가입</a>
-            </div>
-        </div>
-        <div class="flex-1 overflow-y-auto">
-            <ul class="py-2">
-                <li class="border-b border-gray-50">
-                    <a href="https://kcsrentcar.com/bbs/board.php?bo_table=info" class="block px-6 py-4 font-bold text-gray-800">서비스 안내</a>
-                </li>
-                <li class="border-b border-gray-50">
-                    <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="block px-6 py-4 font-bold text-gray-800">서비스 신청</a>
-                </li>
-                <li class="border-b border-gray-50">
-                    <a href="https://kcsrentcar.com/bbs/board.php?bo_table=notice" class="block px-6 py-4 font-bold text-gray-800">커뮤니티</a>
-                    <ul class="bg-gray-50 py-1">
-                        <li><a href="https://kcsrentcar.com/bbs/board.php?bo_table=notice" class="block px-10 py-3 text-sm text-gray-600">공지사항</a></li>
-                        <li><a href="https://kcsrentcar.com/bbs/board.php?bo_table=review" class="block px-10 py-3 text-sm text-gray-600">리뷰게시판</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="gnb_all_bg" class="invisible fixed inset-0 bg-black/50 z-[1500] opacity-0 transition-all duration-300"></div>
+    <!-- Service Section -->
+    <section id="about" class="py-32 bg-white dark:bg-dark-bg relative overflow-hidden transition-colors duration-300">
+        <!-- 배경 장식 -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gray-50 dark:bg-dark-card/30 -z-10 skew-x-12 opacity-50"></div>
 
-    <div id="wrapper" class="pt-18 md:pt-28">
-        <div id="container">
-            <div class="flex flex-col justify-center items-center gap-10 aspect-square px-4 mb-12 bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/idx_bg.jpg')] bg-cover bg-center bg-blend-multiply text-center text-white md:aspect-auto md:h-118 md:mb-16">
-                <div class="flex flex-col gap-2">
-                    <strong class="text-[28px] !leading-[1.25] md:text-4xl">전문 기사님과 함께<br>편안하고 행복한 여행을 시작하세요</strong>
-                    <p class="text-lg md:text-xl">굿타임코리아는 고객님을 위해<br class="md:hidden"><span class="hidden md:inline">&nbsp;</span>언제나 최선을 다하겠습니다.</p>
-                </div>
-                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="inline-block px-12 leading-12 font-bold text-lg bg-white text-[#0054A6] rounded-full shadow">상담 신청하기</a>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-24">
+                <span class="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase block mb-3">Service</span>
+                <h2 class="font-display text-4xl md:text-5xl text-navy-950 dark:text-white mb-6 transition-colors">Our Premium Services</h2>
+                <div class="w-16 h-[1px] bg-navy-900 dark:bg-slate-700 mx-auto"></div>
+                <p class="mt-8 text-slate-500 dark:text-slate-400 font-light text-lg max-w-2xl mx-auto transition-colors">고객님의 목적과 상황에 맞는 최적의 차량과 의전 서비스를 제공합니다.</p>
             </div>
-
-            <div class="flex flex-col w-full max-w-screen-xl mx-auto text-center">
-                <section class="flex flex-col gap-12 px-4 mb-15 md:gap-16 md:mb-20" aria-labelledby="svc-title">
-                    <h2 id="svc-title" class="font-medium text-xl md:text-[28px]">굿타임코리아의 서비스</h2>
-                    <ul class="grid gap-10 md:grid-cols-3 md:text-sm">
-                        <li class="flex flex-col items-center gap-2.5 px-5">
-                            <i class="fa-solid fa-users text-lg" aria-hidden="true"></i>
-                            <h3 class="font-medium text-lg md:text-2xl">기업 및 외교 의전</h3>
-                            <p>비즈니스 임원과 기업 고객, 외교관, 대사관 방문 귀빈 등을 위한<br>전문적이고 신뢰할 수 있는 의전 서비스를 제공합니다.</p>
-                        </li>
-                        <li class="flex flex-col items-center gap-2.5 px-5">
-                            <i class="fa-solid fa-wine-glass text-lg" aria-hidden="true"></i>
-                            <h3 class="font-medium text-lg md:text-2xl">특별 행사 의전</h3>
-                            <p>콘서트, 스포츠 행사, 결혼식, 파티, 기념일 등을 위한 프리미엄 서비스로 다양한 차량 옵션과 함께 이벤트를 잊지 못할 순간으로 만듭니다.</p>
-                        </li>
-                        <li class="flex flex-col items-center gap-2.5 px-5">
-                            <i class="fa-solid fa-cable-car text-lg" aria-hidden="true"></i>
-                            <h3 class="font-medium text-lg md:text-2xl">프라이빗 투어</h3>
-                            <p>도시의 랜드마크와 명소를 투어하는 서비스로<br>기사와 전문 투어 가이드, 맞춤형 일정, 럭셔리 차량으로<br>독점적인 여행 경험을 제공합니다.</p>
-                        </li>
-                    </ul>
-                </section>
-
-                <div class="flex flex-col gap-12">
-                    <section class="flex flex-col gap-9" aria-labelledby="charter-title">
-                        <header>
-                            <h2 id="charter-title" class="font-medium text-xl md:text-[28px]">기사 포함 렌트카 대절</h2>
-                            <p class="md:text-lg">굿타임코리아에서 투어 가능한 도시입니다.</p>
-                        </header>
-                        <ul class="md:grid md:grid-cols-3">
-                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/seoul.jpg')] bg-center bg-cover bg-blend-multiply">
-                                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white shadow text-center">
-                                    <span class="text-lg font-semibold">서울</span>
-                                    <span class="opacity-80 mt-1 text-sm">광화문, 남산, 명동 시내투어</span>
-                                </a>
-                            </li>
-                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/capital.jpg')] bg-center bg-cover bg-blend-multiply">
-                                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white shadow text-center">
-                                    <span class="text-lg font-semibold">경기</span>
-                                    <span class="opacity-80 mt-1 text-sm">가평, DMZ, 화담숲, 수원산성, 에버랜드 등 지역투어</span>
-                                </a>
-                            </li>
-                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-500 bg-[url('https://kcsrentcar.com/theme/basic/img/provinces.jpg')] bg-center bg-cover bg-blend-multiply">
-                                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="flex flex-col justify-center items-center w-76 p-3 border-2 border-white text-white shadow text-center">
-                                    <span class="text-lg font-semibold">지역투어</span>
-                                    <span class="opacity-80 mt-1 text-sm">설악산, 부산, 안동하회마을, 알펜시아스키 투어</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section class="flex flex-col gap-9" aria-labelledby="airport-title">
-                        <header>
-                            <h2 id="airport-title" class="font-medium text-xl md:text-[28px]">공항 픽업·센딩</h2>
-                            <p class="md:text-lg">인천공항과 김포공항에서 픽업 및 센딩 서비스를 제공합니다.</p>
-                        </header>
-                        <ul class="md:grid md:grid-cols-3">
-                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-300 bg-[url('https://kcsrentcar.com/theme/basic/img/incheon.jpg')] bg-center bg-cover bg-blend-multiply">
-                                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="flex justify-center items-center w-34 h-15 border-2 border-white text-base text-white shadow">인천공항</a>
-                            </li>
-                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-300 bg-[url('https://kcsrentcar.com/theme/basic/img/gimpo.jpg')] bg-center bg-cover bg-blend-multiply">
-                                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="flex justify-center items-center w-34 h-15 border-2 border-white text-base text-white shadow">김포공항</a>
-                            </li>
-                            <li class="flex justify-center items-center aspect-[414/284] bg-gray-300 bg-[url('https://kcsrentcar.com/theme/basic/img/sending.jpg')] bg-center bg-cover bg-blend-multiply">
-                                <a href="https://kcsrentcar.com/bbs/write.php?bo_table=apply" class="flex justify-center items-center w-34 h-15 border-2 border-white text-base text-white shadow">숙소센딩</a>
-                            </li>
-                        </ul>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- 차량 안내 -->
-<div class="swiper mySwiper w-full max-w-screen-xl mb-7.5 text-center md:!pb-12">
-  <div class="swiper-wrapper">
-    <!-- 카니발 4세대 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_4.jpg" alt="카니발 4세대" class="w-full max-h-42 object-conver rounded-lg border border-gray-200" loading="lazy" decoding="async">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">카니발 4세대</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">7인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">5인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-
-    <!-- 카니발 하이리무진 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_limousine.jpg" alt="카니발 하이리무진" class="w-full max-h-42 object-cover rounded-lg border border-gray-200" loading="lazy" decoding="async">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">카니발 하이리무진</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">7인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">4인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-
-    <!-- 스타리아 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/staria.jpg" alt="스타리아" class="w-full max-h-42 object-contain rounded-lg border border-gray-200" loading="lazy" decoding="async">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">스타리아</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">9인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">6인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-
-    <!-- 스타리아 리무진 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/staria_limousine.png" alt="스타리아 리무진" class="w-full max-h-42 object-cover rounded-lg border border-gray-200" loading="lazy" decoding="async">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">스타리아 리무진</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">9인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">6인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-
-    <!-- 솔라티 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/solati.png" alt="솔라티" class="w-full max-h-42 object-contain rounded-lg border border-gray-200" loading="lazy" decoding="async">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">솔라티</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">15인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">12인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-
-    <!-- 벤츠 스프린터 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/benz_sprinter.png" alt="벤츠 스프린터" class="w-full max-h-42 object-cover rounded-lg border border-gray-200">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">벤츠 스프린터</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">10인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">8인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-
-    <!-- 제네시스 G90 -->
-    <div class="swiper-slide px-4">
-      <article class="flex flex-col gap-8 h-87 p-4 pb-12 border border-gray-200 rounded-lg">
-        <div class="flex justify-center">
-          <img src="https://kcsrentcar.com/theme/basic/img/contents/genesis_g90.jpeg" alt="제네시스 G90" class="w-full max-h-42 object-cover rounded-lg border border-gray-200">
-        </div>
-        <div class="flex flex-col gap-2">
-          <h3 class="font-semibold text-xl">제네시스 G90</h3>
-          <dl class="flex w-full border-y border-gray-400">
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">인승</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">5인승</dd>
-            </div>
-            <div class="flex w-1/2">
-              <dt class="flex justify-center items-center w-1/2 py-2 bg-gray-100">최대인원</dt>
-              <dd class="flex justify-center items-center w-1/2 py-2">4인</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <!-- Optional: Navigation / Pagination -->
-  <div class="swiper-button-next !hidden !right-0 !w-auto !text-gray-300 after:!hidden md:!flex">
-    <span class="flex justify-center items-center !w-8 !h-8 bg-white border border-gray-300 rounded-full">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="!w-6 !h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-      </svg>
-    </span>
-  </div>
-  <div class="swiper-button-prev !hidden !left-0 !w-auto !text-gray-300 after:!hidden md:!flex">
-    <span class="flex justify-center items-center !w-8 !h-8 bg-white border border-gray-300 rounded-full">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="!w-6 !h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-      </svg>
-    </span>
-  </div>
-  <div class="swiper-pagination"></div>
-
-  <script>
-    const swiper = new Swiper(".mySwiper", {
-      loop: true,
-      //   autoplay: {
-      //     delay: 5000
-      //   },
-      pagination: {
-        el: ".swiper-pagination"
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 3, //브라우저가 768보다 클 때
-        }
-      },
-    });
-  </script>
-</div>
-
-    <div id="ft" class="mt-15 border-t border-gray-200 text-center md:text-sm">
-        <div id="ft_wr" class="relative">
-            <div id="ft_link" class="flex justify-center gap-3 py-1 border-b border-gray-200 md:gap-5">
-                <a href="https://kcsrentcar.com/content/privacy" class="block leading-loose">개인정보처리방침</a>
-                <a href="https://kcsrentcar.com/content/provision" class="block leading-loose">서비스이용약관</a>
-            </div>
-            <div id="ft_company" class="py-10">
-                <h2 class="sr-only">사이트 정보</h2>
-                <div class="flex flex-col gap-5">
-                    <div id="ft_catch" class="flex flex-col items-center gap-1 text-[#0054A6]">
-                        <span class="leading-none font-black md:text-lg">굿타임코리아</span>
-                        <span class="leading-none text-[13px] tracking-[0.075em] md:text-base md:tracking-widest">GOOD TIME KOREA</span>
+            
+            <div class="grid md:grid-cols-3 gap-16">
+                <!-- Service Items with Dark Mode Support -->
+                <div class="group text-center">
+                    <div class="w-24 h-24 mx-auto border border-gray-100 dark:border-white/10 rounded-full flex items-center justify-center mb-10 group-hover:border-gold-400 group-hover:bg-gold-50 dark:group-hover:bg-white/5 transition duration-500 relative">
+                         <div class="absolute inset-2 border border-dashed border-gray-200 dark:border-white/10 rounded-full group-hover:border-gold-200 transition duration-500"></div>
+                        <svg class="w-8 h-8 text-navy-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     </div>
-                    <p class=" ft_info">
-                        대표이사 : 김세경<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-                        서울특별시 강서구 방화동로3길 23, 3층 304호(방화동)<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-                        사업자등록번호 : 779-81-03233<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-                        통신판매업신고번호 : 제 2025-인천중구-0769 호<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span><br>
-                        이메일 : lovepost@goodtimekorea.com<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-                        전화 : 02-2665-1232 / +82 10 5490 4740<br class="md:hidden"><span class="hidden md:inline">&nbsp;&nbsp;|&nbsp;</span>
-                        팩스 : 02-2665-1233<br>
+                    <h3 class="text-2xl font-display text-navy-950 dark:text-white mb-5 transition-colors">Airport Transfer</h3>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed font-light text-sm transition-colors">
+                        인천공항 및 김포공항 등<br>항공편 스케줄에 맞춘 정확하고 안전한<br>도어 투 도어(Door-to-Door) 서비스
+                    </p>
+                </div>
+                
+                <div class="group text-center">
+                    <div class="w-24 h-24 mx-auto border border-gray-100 dark:border-white/10 rounded-full flex items-center justify-center mb-10 group-hover:border-gold-400 group-hover:bg-gold-50 dark:group-hover:bg-white/5 transition duration-500 relative">
+                        <div class="absolute inset-2 border border-dashed border-gray-200 dark:border-white/10 rounded-full group-hover:border-gold-200 transition duration-500"></div>
+                        <svg class="w-8 h-8 text-navy-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-display text-navy-950 dark:text-white mb-5 transition-colors">VIP Protocol & Golf</h3>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed font-light text-sm transition-colors">
+                        중요한 비즈니스 파트너 영접 및<br>품격 있는 골프 라운딩을 위한<br>최고급 리무진 차량 지원
+                    </p>
+                </div>
+                
+                <div class="group text-center">
+                    <div class="w-24 h-24 mx-auto border border-gray-100 dark:border-white/10 rounded-full flex items-center justify-center mb-10 group-hover:border-gold-400 group-hover:bg-gold-50 dark:group-hover:bg-white/5 transition duration-500 relative">
+                        <div class="absolute inset-2 border border-dashed border-gray-200 dark:border-white/10 rounded-full group-hover:border-gold-200 transition duration-500"></div>
+                        <svg class="w-8 h-8 text-navy-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-display text-navy-950 dark:text-white mb-5 transition-colors">Safety & Hygiene</h3>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed font-light text-sm transition-colors">
+                        전 차량 정기 방역 및 점검,<br>베테랑 전문 드라이버의<br>안전하고 편안한 운행
                     </p>
                 </div>
             </div>
         </div>
-        <div id="ft_copy" class="px-4 py-7 border-t border-gray-200">Copyright &copy; 굿타임코리아. All rights reserved.</div>
+    </section>
 
-        <button type="button" id="top_btn" class="fixed right-4 bottom-4 w-12 h-12 leading-10 bg-white/50 border-2 border-gray-700 text-center z-20">
-            <i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span>
+    <!-- Fleet Section (Dark Mode: Dark Card Body, Light Image Area for contrast) -->
+    <section id="vehicles" class="py-32 bg-gray-50 dark:bg-dark-card/20 border-t border-gray-200/50 dark:border-white/5 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 max-w-screen-xl mx-auto">
+                <div class="text-left">
+                    <span class="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase block mb-3">Our Fleet</span>
+                    <h2 class="font-display text-4xl md:text-5xl text-navy-950 dark:text-white transition-colors">Premium Vehicles</h2>
+                </div>
+                <div class="mt-6 md:mt-0 text-slate-500 dark:text-slate-400 font-light text-sm text-right transition-colors">
+                    최고급 세단부터 리무진까지,<br>다양한 라인업을 경험해보세요.
+                </div>
+            </div>
+
+            <div class="swiper mySwiper w-full max-w-screen-xl mx-auto px-2 !pb-20">
+                <div class="swiper-wrapper">
+                    
+                    <!-- 차량 1 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <!-- Image overlay adjusted for dark mode -->
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_4.jpg" alt="카니발 4세대" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-navy-900 dark:bg-gold-600 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Premium</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Carnival 4th Gen</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">7인승 리무진</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">5 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- 차량 2 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_limousine.jpg" alt="카니발 하이리무진" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">High-End</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Carnival Hi-Limousine</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">7인승 하이리무진</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">4 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- 차량 3 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/staria.jpg" alt="스타리아" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-navy-900 dark:bg-gold-600 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Business</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Staria Lounge</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">9인승 라운지</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">6 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <!-- 차량 4 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/staria_limousine.png" alt="스타리아 리무진" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Luxury</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Staria Limousine</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">9인승 리무진</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">6 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <!-- 차량 5 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/solati.png" alt="솔라티" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-navy-900 dark:bg-gold-600 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Group</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Solati</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">15인승 미니버스</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">12 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- 차량 6 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/benz_sprinter.png" alt="벤츠 스프린터" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">VVIP</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Benz Sprinter</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">10인승 스프린터</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">8 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- 차량 7 -->
+                    <div class="swiper-slide">
+                        <article class="fleet-card flex flex-col h-full bg-white dark:bg-dark-card rounded-none md:rounded-sm overflow-hidden border border-gray-100 dark:border-dark-border">
+                            <div class="relative h-64 bg-gray-100 dark:bg-[#1E293B] flex items-center justify-center p-6 group transition-colors">
+                                <div class="absolute inset-0 bg-white/50 dark:bg-black/10"></div>
+                                <img src="https://kcsrentcar.com/theme/basic/img/contents/genesis_g90.jpeg" alt="제네시스 G90" class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]" loading="lazy">
+                                <div class="absolute top-4 right-4 bg-navy-900 dark:bg-gold-600 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Sedan</div>
+                            </div>
+                            <div class="p-8">
+                                <h3 class="font-display text-2xl text-navy-950 dark:text-white mb-6 transition-colors">Genesis G90</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Type</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">5인승 세단</span>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b border-gray-100 dark:border-white/10 pb-3">
+                                        <span class="text-xs text-slate-400 dark:text-slate-500 font-bold tracking-widest uppercase">Max Passengers</span>
+                                        <span class="text-sm font-serif text-navy-900 dark:text-slate-200">4 Persons</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+                
+                <!-- Swiper Navigation -->
+                <div class="swiper-button-next !hidden md:!flex !right-0 !w-14 !h-14 !bg-navy-900 dark:!bg-white !rounded-full !shadow-2xl !text-white dark:!text-navy-900 after:!text-lg hover:!bg-gold-500 dark:hover:!bg-gold-500 dark:hover:!text-white transition-all duration-300"></div>
+                <div class="swiper-button-prev !hidden md:!flex !left-0 !w-14 !h-14 !bg-navy-900 dark:!bg-white !rounded-full !shadow-2xl !text-white dark:!text-navy-900 after:!text-lg hover:!bg-gold-500 dark:hover:!bg-gold-500 dark:hover:!text-white transition-all duration-300"></div>
+                <div class="swiper-pagination !bottom-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-32 bg-white dark:bg-dark-bg relative transition-colors duration-300">
+        <div class="container mx-auto px-4 max-w-6xl relative z-10">
+            <div class="bg-white dark:bg-dark-card rounded-xl shadow-luxury overflow-hidden flex flex-col md:flex-row border border-gray-100 dark:border-white/5 transition-colors duration-300">
+                <!-- Left Side: Dark Info -->
+                <div class="bg-navy-950 dark:bg-black/50 text-white p-12 md:w-2/5 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-gold-500 rounded-full blur-[80px] opacity-20"></div>
+                    
+                    <span class="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase mb-4">Reservation</span>
+                    <h2 class="font-display text-4xl mb-6">Book Your<br>Journey</h2>
+                    <p class="text-slate-400 font-light mb-12 leading-relaxed text-sm">
+                        상세한 여정을 알려주시면,<br>
+                        VVIP 전담 매니저가 신속하게<br>
+                        최적의 플랜을 제안해 드립니다.
+                    </p>
+                    <div class="space-y-6 mt-auto">
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-gold-500 transition duration-300">
+                                <span class="text-lg">📞</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">Call Us</p>
+                                <p class="font-display text-xl">010-5490-4740</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-gold-500 transition duration-300">
+                                <span class="text-lg">✉️</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">Email Us</p>
+                                <p class="font-serif text-sm">lovepost@naver.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Form (Dark Mode supported) -->
+                <div class="p-12 md:w-3/5 bg-white dark:bg-dark-card">
+                    <form onsubmit="sendEmail(event)" class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Date</label>
+                                <input type="date" id="date" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                            <div class="relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Time</label>
+                                <input type="time" id="time" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                            <div class="relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Passengers</label>
+                                <input type="number" id="passengers" min="1" placeholder="ex. 3" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                            <div class="relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Luggage</label>
+                                <input type="number" id="luggage" min="0" placeholder="ex. 2" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                            <div class="md:col-span-2 relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pick-up</label>
+                                <input type="text" id="pickup" placeholder="출발지를 입력해주세요" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                            <div class="md:col-span-2 relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Drop-off</label>
+                                <input type="text" id="dropoff" placeholder="도착지를 입력해주세요" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                            <div class="md:col-span-2 relative">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Contact</label>
+                                <input type="tel" id="contact" placeholder="연락처를 입력해주세요" required class="luxury-input w-full text-navy-900 dark:text-white text-sm">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-navy-900 dark:bg-gold-600 text-white font-bold py-5 mt-6 tracking-widest uppercase text-xs hover:bg-gold-600 dark:hover:bg-gold-500 transition duration-500 shadow-lg">
+                            Request Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 dark:bg-black text-slate-400 py-20 border-t border-white/5 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h3 class="font-display text-2xl text-white font-bold mb-8 tracking-wide">GOOD TIME KOREA</h3>
+                    <div class="space-y-3 text-xs font-light tracking-wide text-slate-500 dark:text-slate-400">
+                        <p><strong class="text-slate-300 font-medium">CEO :</strong> Kim Se-Kyung</p>
+                        <p><strong class="text-slate-300 font-medium">License :</strong> 779-81-03233</p>
+                        <p><strong class="text-slate-300 font-medium">Address :</strong> 304-ho, 23, Banghwa-dong-ro 3-gil, Gangseo-gu, Seoul</p>
+                    </div>
+                    <p class="text-[10px] text-slate-600 dark:text-slate-500 mt-10 uppercase tracking-widest">© 2024 GOOD TIME KOREA. All rights reserved.</p>
+                </div>
+                
+                <div class="md:text-right">
+                    <h4 class="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase mb-8">Contact Us</h4>
+                    <a href="tel:01054904740" class="text-3xl font-display text-white hover:text-gold-400 transition block mb-4">010-5490-4740</a>
+                    <a href="mailto:lovepost@naver.com" class="text-sm text-slate-400 hover:text-white transition font-serif">lovepost@naver.com</a>
+                    
+                    <div class="mt-10 flex md:justify-end gap-4">
+                        <a href="http://pf.kakao.com/_sdUgn/chat" target="_blank" class="border border-white/20 text-white px-6 py-3 rounded-none text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-navy-950 transition duration-300">
+                            KakaoTalk
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 우측 하단 플로팅 메뉴 -->
+    <div class="fixed right-6 bottom-8 z-50 flex flex-col items-center gap-4">
+        <!-- SNS Links -->
+        <ul class="flex flex-col gap-3">
+            <li class="group">
+                <a href="https://www.instagram.com/goodtimekorea/" target="_blank" title="Instagram"
+                   class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 group-hover:bg-gradient-to-tr from-purple-500 to-pink-500 transition-all duration-300 overflow-hidden relative">
+                    <img src="https://kcsrentcar.com/theme/basic/img/instagram.png" class="w-full h-full object-cover group-hover:opacity-0 transition-opacity absolute">
+                    <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+            </li>
+            <li class="group">
+                <a href="http://pf.kakao.com/_sdUgn/chat" target="_blank" title="KakaoTalk"
+                   class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 group-hover:bg-[#FEE500] transition-colors duration-300 overflow-hidden relative">
+                    <img src="https://kcsrentcar.com/theme/basic/img/kakaotalk.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/821054904740" target="_blank" title="WhatsApp"
+                   class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <img src="https://kcsrentcar.com/theme/basic/img/whatsapp.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+            <li>
+                <a href="https://line.me/ti/p/yU-eOEy-v9" target="_blank" title="LINE"
+                   class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <img src="https://kcsrentcar.com/theme/basic/img/line.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+        </ul>
+
+        <!-- Top Button -->
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" 
+                class="w-11 h-11 bg-navy-950 dark:bg-gold-500 text-white rounded-full shadow-luxury flex items-center justify-center hover:bg-gold-500 dark:hover:bg-white dark:hover:text-navy-950 hover:-translate-y-1 transition-all duration-300"
+                title="Top">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
         </button>
     </div>
 
-    <script>
-        // 번역 및 UI 관련 스크립트 통합
-        function setTransCookie(lang) {
-            var cookieVal = "/ko/" + lang;
-            var date = new Date();
-            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-            var expires = "; expires=" + date.toUTCString();
-            document.cookie = "googtrans=" + cookieVal + expires + "; path=/;";
-            // localhost 등 도메인 없는 환경 고려
-            var host = location.hostname.replace('www.', '');
-            if(host) document.cookie = "googtrans=" + cookieVal + expires + "; path=/; domain=" + host + ";";
-        }
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-        function changeLang(lang) {
-            localStorage.setItem('selected_lang', lang);
-            if (lang === 'ko') {
-                var exp = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "googtrans=; " + exp + "; path=/;";
-                var host = location.hostname.replace('www.', '');
-                if(host) document.cookie = "googtrans=; " + exp + "; path=/; domain=" + host + ";";
-                location.href = location.href.split('#')[0];
-            } else {
-                setTransCookie(lang);
-                var newUrl = location.href.split('#')[0] + "#googtrans(ko|" + lang + ")";
-                location.href = newUrl;
-                location.reload();
-            }
-        }
-
-        function updateUI() {
-            const saved = localStorage.getItem('selected_lang') || 'ko';
-            const langData = {
-                'ko': { flag: 'kr', text: '한국어' },
-                'en': { flag: 'us', text: 'English' },
-                'ja': { flag: 'jp', text: '日本語' },
-                'zh-CN': { flag: 'cn', text: '简体中文' }
-            };
-            const item = langData[saved] || langData['ko'];
-            $('#active_flag').attr('src', 'https://flagcdn.com/w20/' + item.flag + '.png');
-            $('#active_lang_text').text(item.text);
-        }
-
+    <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'ko',
-                autoDisplay: false,
-            }, 'google_translate_element');
+            new google.translate.TranslateElement({pageLanguage: 'ko', includedLanguages: 'ko,en,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
         }
-
-        $(function() {
-            updateUI();
-            
-            $("#lang_btn").click(function(e) { e.stopPropagation(); $("#lang_list").toggleClass("hidden"); });
-            $(document).click(function() { $("#lang_list").addClass("hidden"); });
-
-            $(".gnb_menu_btn").click(function() {
-                $("#gnb_all_bg").removeClass("invisible opacity-0").addClass("visible opacity-100");
-                $("#gnb_all").removeClass("-right-80").addClass("right-0");
-            });
-            $(".gnb_close_btn, #gnb_all_bg").click(function() {
-                $("#gnb_all").removeClass("right-0").addClass("-right-80");
-                $("#gnb_all_bg").removeClass("visible opacity-100").addClass("invisible opacity-0");
-            });
-
-            $("#top_btn").on("click", function() {
-                $("html, body").animate({ scrollTop: 0 }, '500');
-                return false;
-            });
-        });
     </script>
-
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
     <script>
-      (function(ns) {
-        ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
-        ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
-        var saveLang = function(l) { try { localStorage.setItem('site_lang', l); } catch (e) {} };
-        var loadLang = function() { try { return localStorage.getItem('site_lang'); } catch (e) { return null; } };
-        var markReloadedFor = function(l) { try { sessionStorage.setItem('gt_reloaded_for', l); } catch (e) {} };
-        var wasReloadedFor = function(l) { try { return sessionStorage.getItem('gt_reloaded_for') === l; } catch (e) { return false; } };
-        var clearReloadMark = function() { try { sessionStorage.removeItem('gt_reloaded_for'); } catch (e) {} };
-        function getGoogTrans() { try { var raw = document.cookie.split('; ').find(function(x) { return x.indexOf('googtrans=') === 0; }); return raw ? decodeURIComponent(raw.split('=')[1]) : ''; } catch (e) { return ''; } }
-        function syncDropdownInitial() {
-          var sel = document.getElementById('langSelect');
-          if (!sel) return;
-          var now = getGoogTrans();
-          var cookieLang = (now.split('/')[2] || ns.PAGE_LANG);
-          var saved = loadLang();
-          var effective = (saved && ns.SUPPORT_LANGS.indexOf(saved) > -1) ? saved : cookieLang;
-          if (ns.SUPPORT_LANGS.indexOf(effective) > -1) sel.value = effective;
-          if (saved && getGoogTrans() === '/' + ns.PAGE_LANG + '/' + saved) { clearReloadMark(); }
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check initial theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            lightIcon.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
         }
-        var revertingToKo = false;
-        function revertToKorean() {
-          if (revertingToKo) return;
-          revertingToKo = true;
-          saveLang(ns.PAGE_LANG);
-          var sel = document.getElementById('langSelect');
-          if (sel && sel.value !== ns.PAGE_LANG) sel.value = ns.PAGE_LANG;
-          setTimeout(function() { revertingToKo = false; }, 300);
-        }
-        function watchTranslateState() {
-          var htmlEl = document.documentElement;
-          var isTranslated = function() { var c = htmlEl.classList; return c.contains('translated-ltr') || c.contains('translated-rtl'); };
-          var lastState = isTranslated();
-          var obs = new MutationObserver(function() {
-            var now = isTranslated();
-            if (lastState === true && now === false) { revertToKorean(); }
-            lastState = now;
-          });
-          obs.observe(htmlEl, { attributes: true, attributeFilter: ['class'] });
-        }
-        window.googleTranslateElementInit = function() {
-          new google.translate.TranslateElement({
-            pageLanguage: ns.PAGE_LANG,
-            includedLanguages: ns.SUPPORT_LANGS.join(','),
-            autoDisplay: false,
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-          }, 'google_translate_element');
-          var obs = new MutationObserver(function() {
-            var combo = document.querySelector('.goog-te-combo');
-            if (!combo) return;
-            var saved = loadLang();
-            if (saved && ns.SUPPORT_LANGS.indexOf(saved) > -1 && combo.value !== saved) {
-              combo.value = saved;
-              combo.dispatchEvent(new Event('change'));
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (localStorage.theme === 'dark') {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
             }
-            obs.disconnect();
-          });
-          obs.observe(document.body, { childList: true, subtree: true });
-        };
-        document.addEventListener('DOMContentLoaded', function() {
-          syncDropdownInitial();
-          watchTranslateState();
         });
-      })(window.__gt = window.__gt || {});
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <script>var smipHomeCode = "smip20251208S0708T3529";</script>
-    <script src="//miracleintip.com/smip_log.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17777128864"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17777128864');
+        // Other Functions
+        function changeLanguage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if(select) { select.value = lang; select.dispatchEvent(new Event('change')); }
+            else { setTimeout(() => changeLanguage(lang), 500); }
+        }
+
+        function sendEmail(e) {
+            e.preventDefault();
+            const getVal = (id) => document.getElementById(id).value;
+            const subject = `[굿타임코리아 VVIP 예약] - ${getVal('contact')}`;
+            const body = `예약 정보 Details\n\nDate: ${getVal('date')}\nTime: ${getVal('time')}\nPassengers: ${getVal('passengers')}명\nLuggage: ${getVal('luggage')}개\nPick-up: ${getVal('pickup')}\nDrop-off: ${getVal('dropoff')}\nContact: ${getVal('contact')}`;
+            location.href = `mailto:lovepost@naver.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // Swiper Initialization
+        document.addEventListener('DOMContentLoaded', function () {
+            const swiper = new Swiper(".mySwiper", {
+                loop: true,
+                autoplay: {
+                  delay: 4500,
+                  disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 40, 
+                    }
+                },
+            });
+        });
     </script>
 </body>
 </html>
-
-
