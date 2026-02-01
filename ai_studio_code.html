@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>굿타임코리아 | 프리미엄 차량 라인업</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'], display: ['"Playfair Display"', 'serif'] },
+                    colors: {
+                        gold: { 400: '#D4AF37', 500: '#C5A028' },
+                        navy: { 900: '#0F172A', 950: '#020617' },
+                        dark: { bg: '#0B1120', card: '#161F32' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fleet-img-bg { background-image: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%); }
+        .dark .fleet-img-bg { background-image: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        .feature-badge { @apply text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-gray-200 dark:border-white/10 rounded-sm text-slate-500 dark:text-slate-400; }
+    </style>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else { document.documentElement.classList.remove('dark') }
+    </script>
+</head>
+<body class="bg-white text-slate-800 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Header (Same as Index) -->
+    <header class="fixed w-full z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex flex-col">
+                <span class="font-display text-2xl font-bold text-navy-950 dark:text-white">GOOD TIME KOREA</span>
+                <span class="text-[10px] text-gold-600 dark:text-gold-400 font-bold tracking-[0.35em] uppercase">Premium Limousine</span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-12">
+                <a href="index.html" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Home</a>
+                <a href="fleet.html" class="text-navy-900 dark:text-white font-bold text-sm tracking-widest uppercase border-b-2 border-gold-400">Fleet</a>
+                <a href="index.html#reservation" class="px-8 py-3 bg-navy-950 dark:bg-white dark:text-navy-950 text-white text-xs font-bold tracking-[0.15em] hover:bg-gold-600 transition uppercase">Reservation</a>
+                <button id="theme-toggle" class="p-2 text-slate-500 dark:text-gold-400">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="pt-40 pb-20 bg-navy-950 text-white text-center px-4">
+        <span class="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase block mb-4">Our Collection</span>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl mb-6">The Premium Fleet</h1>
+        <p class="text-slate-400 max-w-2xl mx-auto font-light">
+            최고급 세단부터 다인승 럭셔리 밴까지,<br>귀하의 여정에 최적화된 차량을 선택하세요.
+        </p>
+    </section>
+
+    <!-- Vehicle List (Zigzag Layout) -->
+    <main class="container mx-auto px-6 py-20 space-y-32">
+
+        <!-- 1. Carnival 4th Gen -->
+        <article class="flex flex-col lg:flex-row gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Premium</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_4.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Carnival">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6">
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Carnival 4th Gen</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    가족 여행 및 소규모 비즈니스 이동에 최적화된 4세대 카니발입니다. 
+                    넓은 실내 공간과 안락한 시트는 장거리 이동에도 편안함을 제공하며, 
+                    넉넉한 트렁크 공간은 많은 짐도 문제없이 수용합니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">7인승 리무진</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">5 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+
+        <!-- 2. Carnival Hi-Limousine (Reversed) -->
+        <article class="flex flex-col lg:flex-row-reverse gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">High-End</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_limousine.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Carnival Limousine">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6 text-left lg:text-right"> <!-- Text alignment specific -->
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Carnival Hi-Limousine</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    높은 층고와 프리미엄 인테리어가 돋보이는 하이리무진 모델입니다.
+                    VIP 의전용으로 손색이 없으며, 프라이빗한 커튼과 엔터테인먼트 시스템으로
+                    이동 시간을 휴식 시간으로 만들어 드립니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6 justify-start lg:justify-end">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">7인승 하이리무진</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">4 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+
+        <!-- 3. Staria Lounge -->
+        <article class="flex flex-col lg:flex-row gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Business</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/staria.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Staria">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6">
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Staria Lounge</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    우주선을 연상시키는 미래지향적 디자인과 광활한 파노라마 윈도우.
+                    스타리아 라운지는 최고의 개방감을 선사하며, 비즈니스 미팅이나
+                    관광 목적의 이동에 탁월한 경험을 제공합니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">9인승 라운지</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">6 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+        
+        <!-- 4. Staria Limousine -->
+        <article class="flex flex-col lg:flex-row-reverse gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Luxury</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/staria_limousine.png" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Staria Limousine">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6 text-left lg:text-right">
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Staria Limousine</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    스타리아의 넉넉한 공간에 리무진의 럭셔리함을 더했습니다.
+                    높아진 천장과 고급 가죽 시트, 무드 조명은 이동하는 내내
+                    탑승객에게 최상의 만족감을 드립니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6 justify-start lg:justify-end">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">9인승 리무진</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">6 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+
+        <!-- 5. Solati -->
+        <article class="flex flex-col lg:flex-row gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Group</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/solati.png" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Solati">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6">
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Solati</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    15인승의 넉넉한 좌석을 보유한 쏠라티는 소규모 단체 여행에
+                    가장 적합한 솔루션입니다. 성인이 서서 이동할 수 있는 높은 실내고와
+                    넓은 시야는 단체 이동의 답답함을 해소합니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">15인승 미니버스</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">12 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+
+        <!-- 6. Benz Sprinter -->
+        <article class="flex flex-col lg:flex-row-reverse gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">VVIP</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/benz_sprinter.png" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Benz Sprinter">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6 text-left lg:text-right">
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Benz Sprinter</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    도로 위의 퍼스트 클래스, 벤츠 스프린터입니다.
+                    압도적인 공간감과 최고급 시트, VVIP를 위한 편의시설을 갖추어
+                    귀빈 영접 및 기업 행사에 최상의 품격을 더해드립니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6 justify-start lg:justify-end">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">10인승 스프린터</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">8 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+
+        <!-- 7. Genesis G90 -->
+        <article class="flex flex-col lg:flex-row gap-12 items-center">
+            <div class="lg:w-1/2 relative group">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Sedan</div>
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/genesis_g90.jpeg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Genesis G90">
+                </div>
+            </div>
+            <div class="lg:w-1/2 space-y-6">
+                <h2 class="text-4xl font-display text-navy-950 dark:text-white">Genesis G90</h2>
+                <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                    대한민국 대표 럭셔리 세단 G90입니다.
+                    중요한 비즈니스 미팅이나 웨딩카 등 정숙하고 품격 있는 이동이 필요할 때
+                    가장 완벽한 선택이 될 것입니다.
+                </p>
+                <div class="flex gap-4 border-y border-gray-100 dark:border-white/10 py-6">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Type</span>
+                        <span class="font-medium dark:text-white">5인승 세단</span>
+                    </div>
+                    <div class="w-px bg-gray-200 dark:bg-white/10"></div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase block mb-1">Max Pax</span>
+                        <span class="font-medium dark:text-white">4 Persons</span>
+                    </div>
+                </div>
+                <a href="index.html#reservation" class="inline-block bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-900 px-8 py-3 text-xs font-bold uppercase tracking-widest hover:opacity-90">Book Now</a>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Bottom CTA -->
+    <section class="bg-gray-50 dark:bg-dark-card/30 py-20 text-center">
+        <h3 class="font-display text-3xl mb-6 text-navy-950 dark:text-white">Ready for your journey?</h3>
+        <p class="text-slate-500 mb-8">원하시는 차량을 선택하셨다면 지금 바로 예약하세요.</p>
+        <a href="index.html#reservation" class="bg-navy-900 text-white px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-gold-500 transition">Go to Reservation</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 text-slate-500 py-10 text-center text-sm border-t border-white/10">
+        <p>&copy; 2024 GOOD TIME KOREA. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+    </script>
+</body>
+</html>
