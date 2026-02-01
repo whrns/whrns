@@ -27,7 +27,6 @@
     <style>
         .fleet-img-bg { background-image: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%); }
         .dark .fleet-img-bg { background-image: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
-        .feature-badge { @apply text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-gray-200 dark:border-white/10 rounded-sm text-slate-500 dark:text-slate-400; }
     </style>
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -37,7 +36,7 @@
 </head>
 <body class="bg-white text-slate-800 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
 
-    <!-- Header (Same as Index) -->
+    <!-- Header -->
     <header class="fixed w-full z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex flex-col">
@@ -46,7 +45,8 @@
             </a>
             <nav class="hidden lg:flex items-center gap-12">
                 <a href="index.html" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Home</a>
-                <a href="fleet.html" class="text-navy-900 dark:text-white font-bold text-sm tracking-widest uppercase border-b-2 border-gold-400">Fleet</a>
+                <!-- 메뉴명 변경: Vehicles -->
+                <a href="fleet.html" class="text-navy-900 dark:text-white font-bold text-sm tracking-widest uppercase border-b-2 border-gold-400">Vehicles</a>
                 <a href="index.html#reservation" class="px-8 py-3 bg-navy-950 dark:bg-white dark:text-navy-950 text-white text-xs font-bold tracking-[0.15em] hover:bg-gold-600 transition uppercase">Reservation</a>
                 <button id="theme-toggle" class="p-2 text-slate-500 dark:text-gold-400">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -55,12 +55,12 @@
         </div>
     </header>
 
-    <!-- Page Header -->
+    <!-- Page Header: 타이틀을 "The Signature Collection"으로 변경 -->
     <section class="pt-40 pb-20 bg-navy-950 text-white text-center px-4">
         <span class="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase block mb-4">Our Collection</span>
-        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl mb-6">The Premium Fleet</h1>
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl mb-6">The Signature Collection</h1>
         <p class="text-slate-400 max-w-2xl mx-auto font-light">
-            최고급 세단부터 다인승 럭셔리 밴까지,<br>귀하의 여정에 최적화된 차량을 선택하세요.
+            최고급 세단부터 다인승 럭셔리 밴까지,<br>귀하의 여정에 최적화된 시그니처 라인업을 경험하세요.
         </p>
     </section>
 
@@ -105,7 +105,7 @@
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_limousine.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Carnival Limousine">
                 </div>
             </div>
-            <div class="lg:w-1/2 space-y-6 text-left lg:text-right"> <!-- Text alignment specific -->
+            <div class="lg:w-1/2 space-y-6 text-left lg:text-right">
                 <h2 class="text-4xl font-display text-navy-950 dark:text-white">Carnival Hi-Limousine</h2>
                 <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
                     높은 층고와 프리미엄 인테리어가 돋보이는 하이리무진 모델입니다.
