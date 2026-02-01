@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>굿타임코리아 | 프리미엄 차량 라인업</title>
-    <!-- Fonts & Icons -->
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -19,12 +21,18 @@
                         gold: { 400: '#D4AF37', 500: '#C5A028' },
                         navy: { 900: '#0F172A', 950: '#020617' },
                         dark: { bg: '#0B1120', card: '#161F32' }
-                    }
+                    },
+                    boxShadow: { 'luxury': '0 20px 40px -15px rgba(15, 23, 42, 0.15)' }
                 }
             }
         }
     </script>
     <style>
+        /* 구글 번역바 숨김 처리 */
+        .goog-te-banner-frame.skiptranslate { display: none !important; } 
+        body { top: 0px !important; } 
+        #google_translate_element { display: none; }
+
         .fleet-img-bg { background-image: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%); }
         .dark .fleet-img-bg { background-image: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
     </style>
@@ -36,26 +44,42 @@
 </head>
 <body class="bg-white text-slate-800 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
 
+    <!-- 구글 번역 요소 (숨김) -->
+    <div id="google_translate_element"></div>
+
     <!-- Header -->
-    <header class="fixed w-full z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5">
+    <header class="fixed w-full z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex flex-col">
+            <a href="index.html" class="flex flex-col group">
                 <span class="font-display text-2xl font-bold text-navy-950 dark:text-white">GOOD TIME KOREA</span>
                 <span class="text-[10px] text-gold-600 dark:text-gold-400 font-bold tracking-[0.35em] uppercase">Premium Limousine</span>
             </a>
-            <nav class="hidden lg:flex items-center gap-12">
+
+            <nav class="hidden lg:flex items-center gap-8 xl:gap-12">
                 <a href="index.html" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Home</a>
-                <!-- 메뉴명 변경: Vehicles -->
                 <a href="fleet.html" class="text-navy-900 dark:text-white font-bold text-sm tracking-widest uppercase border-b-2 border-gold-400">Vehicles</a>
-                <a href="index.html#reservation" class="px-8 py-3 bg-navy-950 dark:bg-white dark:text-navy-950 text-white text-xs font-bold tracking-[0.15em] hover:bg-gold-600 transition uppercase">Reservation</a>
-                <button id="theme-toggle" class="p-2 text-slate-500 dark:text-gold-400">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                </button>
+                <a href="index.html#reservation" class="px-6 py-2 bg-navy-950 dark:bg-white dark:text-navy-950 text-white text-xs font-bold tracking-[0.15em] hover:bg-gold-600 transition uppercase rounded-sm">Reservation</a>
+                
+                <!-- 우측 컨트롤 (언어 + 다크모드) -->
+                <div class="flex items-center gap-4 border-l pl-6 border-gray-200 dark:border-white/10">
+                    <!-- Language Icons -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeLanguage('ko')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="Korean"><img src="https://flagcdn.com/w40/kr.png" width="20" alt="KR" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('en')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="English"><img src="https://flagcdn.com/w40/us.png" width="20" alt="EN" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('ja')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="Japanese"><img src="https://flagcdn.com/w40/jp.png" width="20" alt="JP" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('zh-CN')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="Chinese"><img src="https://flagcdn.com/w40/cn.png" width="20" alt="CN" class="shadow-sm"></button>
+                    </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="text-slate-500 dark:text-gold-400 hover:text-gold-600 dark:hover:text-white transition p-1">
+                        <svg id="theme-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <!-- Page Header: 타이틀을 "The Signature Collection"으로 변경 -->
+    <!-- Page Header -->
     <section class="pt-40 pb-20 bg-navy-950 text-white text-center px-4">
         <span class="text-gold-500 font-bold tracking-[0.2em] text-xs uppercase block mb-4">Our Collection</span>
         <h1 class="font-display text-4xl md:text-5xl lg:text-6xl mb-6">The Signature Collection</h1>
@@ -70,7 +94,7 @@
         <!-- 1. Carnival 4th Gen -->
         <article class="flex flex-col lg:flex-row gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Premium</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_4.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Carnival">
                 </div>
@@ -100,7 +124,7 @@
         <!-- 2. Carnival Hi-Limousine (Reversed) -->
         <article class="flex flex-col lg:flex-row-reverse gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">High-End</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/carnival_limousine.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Carnival Limousine">
                 </div>
@@ -130,7 +154,7 @@
         <!-- 3. Staria Lounge -->
         <article class="flex flex-col lg:flex-row gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Business</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/staria.jpg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Staria">
                 </div>
@@ -160,7 +184,7 @@
         <!-- 4. Staria Limousine -->
         <article class="flex flex-col lg:flex-row-reverse gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Luxury</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/staria_limousine.png" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Staria Limousine">
                 </div>
@@ -190,7 +214,7 @@
         <!-- 5. Solati -->
         <article class="flex flex-col lg:flex-row gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Group</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/solati.png" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Solati">
                 </div>
@@ -220,7 +244,7 @@
         <!-- 6. Benz Sprinter -->
         <article class="flex flex-col lg:flex-row-reverse gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 right-4 bg-gold-500 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">VVIP</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/benz_sprinter.png" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Benz Sprinter">
                 </div>
@@ -250,7 +274,7 @@
         <!-- 7. Genesis G90 -->
         <article class="flex flex-col lg:flex-row gap-12 items-center">
             <div class="lg:w-1/2 relative group">
-                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative">
+                <div class="fleet-img-bg h-[400px] flex items-center justify-center rounded-sm overflow-hidden relative shadow-lg">
                     <div class="absolute top-4 left-4 bg-navy-900 text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest z-10">Sedan</div>
                     <img src="https://kcsrentcar.com/theme/basic/img/contents/genesis_g90.jpeg" class="w-4/5 transition transform duration-700 group-hover:scale-105" alt="Genesis G90">
                 </div>
@@ -283,7 +307,7 @@
     <section class="bg-gray-50 dark:bg-dark-card/30 py-20 text-center">
         <h3 class="font-display text-3xl mb-6 text-navy-950 dark:text-white">Ready for your journey?</h3>
         <p class="text-slate-500 mb-8">원하시는 차량을 선택하셨다면 지금 바로 예약하세요.</p>
-        <a href="index.html#reservation" class="bg-navy-900 text-white px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-gold-500 transition">Go to Reservation</a>
+        <a href="index.html#reservation" class="bg-navy-900 text-white px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-gold-500 transition shadow-md">Go to Reservation</a>
     </section>
 
     <!-- Footer -->
@@ -291,12 +315,64 @@
         <p>&copy; 2024 GOOD TIME KOREA. All rights reserved.</p>
     </footer>
 
+    <!-- 우측 하단 플로팅 메뉴 -->
+    <div class="fixed right-6 bottom-8 z-50 flex flex-col items-center gap-4">
+        <ul class="flex flex-col gap-3">
+            <li class="group">
+                <a href="https://www.instagram.com/goodtimekorea/" target="_blank" title="Instagram" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 group-hover:bg-gradient-to-tr from-purple-500 to-pink-500 transition-all duration-300 overflow-hidden relative">
+                    <img src="https://kcsrentcar.com/theme/basic/img/instagram.png" class="w-full h-full object-cover group-hover:opacity-0 transition-opacity absolute">
+                    <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+            </li>
+            <li class="group">
+                <a href="http://pf.kakao.com/_sdUgn/chat" target="_blank" title="KakaoTalk" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 group-hover:bg-[#FEE500] transition-colors duration-300 overflow-hidden relative">
+                    <img src="https://kcsrentcar.com/theme/basic/img/kakaotalk.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/821054904740" target="_blank" title="WhatsApp" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <img src="https://kcsrentcar.com/theme/basic/img/whatsapp.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+            <li>
+                <a href="https://line.me/ti/p/yU-eOEy-v9" target="_blank" title="LINE" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <img src="https://kcsrentcar.com/theme/basic/img/line.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+        </ul>
+
+        <!-- Top Button -->
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="w-11 h-11 bg-navy-950 dark:bg-gold-500 text-white rounded-full shadow-luxury flex items-center justify-center hover:bg-gold-500 dark:hover:bg-white dark:hover:text-navy-950 hover:-translate-y-1 transition-all duration-300" title="Top">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+        </button>
+    </div>
+
+    <!-- Scripts -->
     <script>
+        // 다크모드 토글 기능
         const toggleBtn = document.getElementById('theme-toggle');
         toggleBtn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
             localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
         });
+
+        // 언어 변경 기능 (구글 번역 트리거)
+        function changeLanguage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if(select) { 
+                select.value = lang; 
+                select.dispatchEvent(new Event('change')); 
+            } else {
+                setTimeout(() => changeLanguage(lang), 500);
+            }
+        }
+
+        // 구글 번역 초기화
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'ko', includedLanguages: 'ko,en,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
+        }
     </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
