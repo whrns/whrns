@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>굿타임코리아 | VVIP 프리미엄 의전</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'], display: ['"Playfair Display"', 'serif'] },
+                    colors: {
+                        gold: { 400: '#D4AF37', 500: '#C5A028', 600: '#B45309' },
+                        navy: { 900: '#0F172A', 950: '#020617' },
+                        dark: { bg: '#0B1120', card: '#161F32' }
+                    },
+                    boxShadow: { 'luxury': '0 20px 40px -15px rgba(15, 23, 42, 0.15)' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 구글 번역바 숨김 처리 */
+        .goog-te-banner-frame.skiptranslate { display: none !important; } 
+        body { top: 0px !important; } 
+        #google_translate_element { display: none; }
+        
+        .hero-bg { background-image: url('https://images.unsplash.com/photo-1562426503-12e6fd634081?q=80&w=1920&auto=format&fit=crop'); background-size: cover; background-position: center; }
+    </style>
+
+    <script>
+        // 초기 다크모드 설정
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else { document.documentElement.classList.remove('dark') }
+    </script>
+</head>
+<body class="bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
+
+    <!-- 구글 번역 요소 (숨김) -->
+    <div id="google_translate_element"></div>
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex flex-col group">
+                <span class="font-display text-2xl font-bold text-navy-950 dark:text-white">GOOD TIME KOREA</span>
+                <span class="text-[10px] text-gold-600 dark:text-gold-400 font-bold tracking-[0.35em] uppercase">Premium Limousine</span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-8 xl:gap-12">
+                <a href="index.html" class="text-navy-900 dark:text-white font-bold text-sm tracking-widest uppercase border-b-2 border-gold-400">Home</a>
+                <a href="fleet.html" class="text-slate-600 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white font-medium text-sm tracking-widest transition uppercase">Vehicles</a>
+                <a href="#reservation" class="px-6 py-2 bg-navy-950 dark:bg-white dark:text-navy-950 text-white text-xs font-bold tracking-[0.15em] hover:bg-gold-600 transition uppercase rounded-sm">Reservation</a>
+                
+                <!-- 우측 컨트롤 (언어 + 다크모드) -->
+                <div class="flex items-center gap-4 border-l pl-6 border-gray-200 dark:border-white/10">
+                    <!-- Language Icons -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeLanguage('ko')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="Korean"><img src="https://flagcdn.com/w40/kr.png" width="20" alt="KR" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('en')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="English"><img src="https://flagcdn.com/w40/us.png" width="20" alt="EN" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('ja')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="Japanese"><img src="https://flagcdn.com/w40/jp.png" width="20" alt="JP" class="shadow-sm"></button>
+                        <button onclick="changeLanguage('zh-CN')" class="opacity-40 hover:opacity-100 transition transform hover:scale-110" title="Chinese"><img src="https://flagcdn.com/w40/cn.png" width="20" alt="CN" class="shadow-sm"></button>
+                    </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="text-slate-500 dark:text-gold-400 hover:text-gold-600 dark:hover:text-white transition p-1">
+                        <svg id="theme-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative h-screen flex items-center justify-center hero-bg">
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-950/70 to-navy-950/90 dark:from-black/80 dark:to-dark-bg"></div>
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="font-display text-5xl md:text-7xl mb-6">Beyond Luxury</h1>
+            <p class="font-light text-xl mb-10 text-slate-200">당신의 품격에 걸맞은 완벽한 의전 서비스</p>
+            <a href="fleet.html" class="bg-gold-500 text-white px-10 py-4 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-navy-950 transition shadow-lg">View Vehicles</a>
+        </div>
+    </section>
+
+    <!-- Vehicle Teaser -->
+    <section class="py-32 bg-white dark:bg-dark-bg">
+        <div class="container mx-auto px-6 text-center">
+            <span class="text-gold-500 font-bold tracking-widest text-xs uppercase mb-4 block">Our Lineup</span>
+            <h2 class="font-display text-4xl md:text-5xl text-navy-950 dark:text-white mb-8">Premium Collection</h2>
+            <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-12">
+                제네시스 G90, 벤츠 스프린터, 하이리무진 등<br>VVIP를 위한 7종의 프리미엄 라인업을 확인해보세요.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+                <a href="fleet.html" class="group relative h-64 overflow-hidden rounded-lg block shadow-lg">
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/benz_sprinter.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Benz Sprinter">
+                    <div class="absolute inset-0 bg-navy-950/50 flex items-center justify-center group-hover:bg-navy-950/30 transition">
+                        <span class="text-white font-display text-2xl drop-shadow-md">Group & VVIP</span>
+                    </div>
+                </a>
+                <a href="fleet.html" class="group relative h-64 overflow-hidden rounded-lg block shadow-lg">
+                    <img src="https://kcsrentcar.com/theme/basic/img/contents/genesis_g90.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Genesis G90">
+                    <div class="absolute inset-0 bg-navy-950/50 flex items-center justify-center group-hover:bg-navy-950/30 transition">
+                        <span class="text-white font-display text-2xl drop-shadow-md">Private Sedan</span>
+                    </div>
+                </a>
+            </div>
+
+            <a href="fleet.html" class="inline-block border-b border-navy-900 dark:border-white text-navy-900 dark:text-white pb-1 font-bold hover:text-gold-500 dark:hover:text-gold-400 transition">전체 차량 라인업 보기 →</a>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-32 bg-navy-950 text-white relative">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500 rounded-full blur-[100px] opacity-10"></div>
+        <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+            <h2 class="font-display text-4xl mb-6">Reservation</h2>
+            <p class="text-slate-400 mb-10">간편하게 예약 문의를 남겨주세요.</p>
+            <form onsubmit="event.preventDefault(); alert('예약 문의가 접수되었습니다.');" class="grid md:grid-cols-2 gap-6 text-left">
+                <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-white/20 py-3 focus:border-gold-500 outline-none transition text-white placeholder-slate-500">
+                <input type="tel" placeholder="Phone" class="w-full bg-transparent border-b border-white/20 py-3 focus:border-gold-500 outline-none transition text-white placeholder-slate-500">
+                <input type="text" placeholder="Pick-up Location" class="w-full bg-transparent border-b border-white/20 py-3 focus:border-gold-500 outline-none transition text-white placeholder-slate-500">
+                <input type="text" placeholder="Destination" class="w-full bg-transparent border-b border-white/20 py-3 focus:border-gold-500 outline-none transition text-white placeholder-slate-500">
+                <button class="md:col-span-2 bg-gold-500 text-navy-900 font-bold py-4 mt-6 hover:bg-white transition shadow-lg uppercase tracking-widest text-xs">Send Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-slate-500 py-10 text-center text-sm border-t border-white/10">
+        <p>&copy; 2024 GOOD TIME KOREA. All rights reserved.</p>
+    </footer>
+
+    <!-- 우측 하단 플로팅 메뉴 -->
+    <div class="fixed right-6 bottom-8 z-50 flex flex-col items-center gap-4">
+        <ul class="flex flex-col gap-3">
+            <li class="group">
+                <a href="https://www.instagram.com/goodtimekorea/" target="_blank" title="Instagram" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 group-hover:bg-gradient-to-tr from-purple-500 to-pink-500 transition-all duration-300 overflow-hidden relative">
+                    <img src="https://kcsrentcar.com/theme/basic/img/instagram.png" class="w-full h-full object-cover group-hover:opacity-0 transition-opacity absolute">
+                    <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+            </li>
+            <li class="group">
+                <a href="http://pf.kakao.com/_sdUgn/chat" target="_blank" title="KakaoTalk" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 group-hover:bg-[#FEE500] transition-colors duration-300 overflow-hidden relative">
+                    <img src="https://kcsrentcar.com/theme/basic/img/kakaotalk.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/821054904740" target="_blank" title="WhatsApp" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <img src="https://kcsrentcar.com/theme/basic/img/whatsapp.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+            <li>
+                <a href="https://line.me/ti/p/yU-eOEy-v9" target="_blank" title="LINE" class="block w-11 h-11 rounded-full bg-white dark:bg-dark-card shadow-luxury flex items-center justify-center border border-gray-50 dark:border-white/10 hover:scale-110 transition-transform duration-300 overflow-hidden">
+                    <img src="https://kcsrentcar.com/theme/basic/img/line.png" class="w-full h-full object-cover">
+                </a>
+            </li>
+        </ul>
+
+        <!-- Top Button -->
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="w-11 h-11 bg-navy-950 dark:bg-gold-500 text-white rounded-full shadow-luxury flex items-center justify-center hover:bg-gold-500 dark:hover:bg-white dark:hover:text-navy-950 hover:-translate-y-1 transition-all duration-300" title="Top">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // 다크모드 토글 기능
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // 언어 변경 기능 (구글 번역 트리거)
+        function changeLanguage(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if(select) { 
+                select.value = lang; 
+                select.dispatchEvent(new Event('change')); 
+            } else {
+                // 아직 로드되지 않았을 경우 재시도
+                setTimeout(() => changeLanguage(lang), 500);
+            }
+        }
+
+        // 구글 번역 초기화
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'ko', includedLanguages: 'ko,en,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
