@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 결제 페이지</title>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .payment-container { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        
+        .product-info { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .price { font-size: 1.5rem; font-weight: bold; color: #333; }
+
+        .payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        
+        /* 라디오 버튼 숨기기 */
+        input[type="radio"] { display: none; }
+        
+        /* 결제 수단 버튼 스타일 */
+        .method-label {
+            display: flex; align-items: center; justify-content: center;
+            height: 50px; border: 1px solid #ddd; border-radius: 8px;
+            cursor: pointer; font-weight: 500; transition: all 0.2s; color: #555;
+        }
+        
+        /* 선택되었을 때 스타일 */
+        input[type="radio"]:checked + .method-label { border: 2px solid #333; font-weight: bold; color: #000; background-color: #f0f8ff; border-color: #007bff; color: #007bff; }
+
+        /* 브랜드별 컬러 포인트 (선택 시) */
+        #pg-kakao:checked + label { background-color: #ffeb00; border-color: #ffeb00; color: #3c1e1e; }
+        #pg-toss:checked + label { background-color: #0064ff; border-color: #0064ff; color: white; }
+        #pg-naver:checked + label { background-color: #03c75a; border-color: #03c75a; color: white; }
+
+        .btn-pay { width: 100%; padding: 18px; border: none; border-radius: 8px; background-color: #333; color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        .btn-pay:hover { background-color: #111; }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>주문 / 결제</h2>
+        
+        <div class="product-info">
+            <div>프리미엄 이용권</div>
+            <div class="price">100원</div>
+        </div>
+
+        <h3>결제 수단 선택</h3>
+        <div class="payment-methods">
+            <!-- 카카오페이 -->
+            <div>
+                <input type="radio" name="pg" id="pg-kakao" value="kakaopay" checked>
+                <label for="pg-kakao" class="method-label">카카오페이</label>
+            </div>
+            
+            <!-- 토스페이먼츠 (토스페이) -->
+            <div>
+                <input type="radio" name="pg" id="pg-toss" value="tosspayments">
+                <label for="pg-toss" class="method-label">토스페이</label>
+            </div>
+
+            <!-- KG이니시스 (일반결제) -->
+            <div>
+                <input type="radio" name="pg" id="pg-inicis" value="html5_inicis">
+                <label for="pg-inicis" class="method-label">신용카드(일반)</label>
+            </div>
+
+            <!-- 다날 (휴대폰결제 예시) -->
+            <div>
+                <input type="radio" name="pg" id="pg-danal" value="danal_tpay">
+                <label for="pg-danal" class="method-label">휴대폰결제</label>
+            </div>
+        </div>
+
+        <button class="btn-pay" onclick="requestPay()">결제하기</button>
+    </div>
+
+    <script>
+        // 포트원 식별코드 (가입 후 본인 코드로 변경 필수)
+        var IMP = window.IMP; 
+        IMP.init("imp00000000"); 
+
+        function requestPay() {
+            // 1. 선택된 라디오 버튼의 value 값을 가져옵니다 (pg사 코드)
+            const selectedPg = document.querySelector('input[name="pg"]:checked').value;
+            
+            // 2. 결제 수단(pay_method) 결정 로직
+            // 보통 간편결제는 'card' 또는 'trans' 등을 포함하지만, 포트원에서는 pg사만 지정하면 알아서 해당 간편결제창을 띄워줍니다.
+            // 휴대폰 결제인 경우에만 pay_method를 'phone'으로 변경하는 예시입니다.
+            let payMethod = 'card';
+            if(selectedPg === 'danal_tpay') {
+                payMethod = 'phone';
+            }
+
+            // 3. 결제 요청
+            IMP.request_pay({
+                pg: selectedPg,           // 동적으로 설정된 PG사
+                pay_method: payMethod,    // 결제 수단
+                merchant_uid: "ORDER-" + new Date().getTime(), 
+                name: "프리미엄 이용권",
+                amount: 100,
+                buyer_email: "gildong@gmail.com",
+                buyer_name: "홍길동",
+                buyer_tel: "010-1234-5678",
+                // [중요] 모바일 환경에서 결제 후 리다이렉트 될 URL (필수 설정 권장)
+                m_redirect_url: window.location.origin + "/payment-complete" 
+            }, function (rsp) { // PC 환경에서의 콜백
+                if (rsp.success) {
+                    alert("결제 성공! (UID: " + rsp.imp_uid + ")");
+                    console.log(rsp);
+                    // 성공 시 백엔드로 데이터 전송
+                } else {
+                    alert("결제 실패: " + rsp.error_msg);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
