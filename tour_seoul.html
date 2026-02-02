@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ko" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>서울 시내 투어 코스 - 굿타임코리아</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- jQuery -->
+    <script src="https://kcsrentcar.com/js/jquery-1.12.4.min.js?ver=2304171"></script>
+    <script src="https://kcsrentcar.com/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .font-eng {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .break-keep {
+            word-break: keep-all;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Hide Google Translate Elements */
+        body {
+            top: 0 !important;
+        }
+
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-balloon-frame,
+        #goog-gt-tt,
+        .goog-te-spinner-pos,
+        #google_translate_element {
+            display: none !important;
+        }
+
+        font {
+            background-color: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+    </style>
+
+    <script>
+        (function (ns) {
+            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
+            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
+            try {
+                var saved = localStorage.getItem('site_lang');
+                if (!saved || saved === ns.PAGE_LANG) return;
+                var want = '/' + ns.PAGE_LANG + '/' + saved;
+                var raw = document.cookie.split('; ').find(function (x) { return x.indexOf('googtrans=') === 0; });
+                var now = raw ? decodeURIComponent(raw.split('=')[1]) : '';
+                if (now === want) return;
+                var maxAge = 60 * 60 * 24 * 365;
+                document.cookie = 'googtrans=' + want + '; path=/; max-age=' + maxAge;
+            } catch (e) { }
+        })(window.__gt = window.__gt || {});
+    </script>
+</head>
+
+<body class="text-slate-800 bg-slate-50 selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed right-6 bottom-24 z-50 flex flex-col gap-3 group">
+        <a href='https://www.instagram.com/goodtimekorea/' target='_blank'
+            class='flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-200 hover:scale-110 transition-transform duration-300 transform hover:-translate-y-1'>
+            <i class="fa-brands fa-instagram text-2xl"></i>
+        </a>
+        <a href='https://pf.kakao.com/_sdUgn/chat' target='_blank'
+            class='flex items-center justify-center w-12 h-12 rounded-full bg-[#FAE100] text-[#371D1E] shadow-lg shadow-yellow-200 hover:scale-110 transition-transform duration-300 transform hover:-translate-y-1'>
+            <i class="fa-solid fa-comment text-xl"></i>
+        </a>
+        <a href='https://wa.me/821054904740' target='_blank'
+            class='flex items-center justify-center w-12 h-12 rounded-full bg-[#25D366] text-white shadow-lg shadow-green-200 hover:scale-110 transition-transform duration-300 transform hover:-translate-y-1'>
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <a href='https://line.me/ti/p/yU-eOEy-v9' target='_blank'
+            class='flex items-center justify-center w-12 h-12 rounded-full bg-[#00C300] text-white shadow-lg shadow-green-200 hover:scale-110 transition-transform duration-300 transform hover:-translate-y-1'>
+            <i class="fa-brands fa-line text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header id="hd"
+        class="fixed left-0 top-0 w-full z-[1000] glass-header border-b border-gray-100 transition-all duration-300">
+        <div class="flex justify-between items-center max-w-screen-xl px-4 md:px-6 mx-auto h-16 md:h-20">
+            <!-- Logo -->
+            <a href="index.html" class="flex flex-col group">
+                <span
+                    class="text-xl md:text-2xl font-black text-blue-900 tracking-tighter group-hover:opacity-80 transition-opacity">굿타임코리아</span>
+                <span
+                    class="text-[9px] md:text-[10px] font-eng font-bold tracking-[0.3em] text-blue-400 uppercase">Premium
+                    Service</span>
+            </a>
+
+            <!-- GNB (Desktop) -->
+            <nav class="hidden md:block">
+                <ul class="flex items-center gap-8">
+                    <li><a href='index.html'
+                            class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>서비스
+                            안내<span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                    <li><a href='car_info.html'
+                            class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>차량
+                            안내<span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                    <li><a href='tour_seoul.html'
+                            class='text-[15px] font-semibold text-blue-700 transition-colors py-4 relative group'>서울
+                            시내 투어<span
+                                class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-700 transition-all duration-300"></span></a>
+                    </li>
+                    <li><a href='apply.html'
+                            class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>서비스
+                            신청<span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Menu Button & Language -->
+            <div class="flex items-center gap-4">
+                <!-- Language Selector -->
+                <div class="relative group" id="lang_select_box">
+                    <button type="button" id="lang_btn"
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 transition-colors">
+                        <img id="active_flag" src="https://flagcdn.com/w20/kr.png"
+                            class="w-4 h-4 rounded-sm object-cover shadow-sm">
+                        <span id="active_lang_text" class="hidden sm:inline">KOR</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+                    </button>
+                    <div id="lang_list"
+                        class="hidden absolute right-0 top-full mt-2 w-32 bg-white border border-gray-100 rounded-lg shadow-xl overflow-hidden ring-1 ring-black/5 z-50">
+                        <button onclick="changeLang('ko')"
+                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
+                                src="https://flagcdn.com/w20/kr.png" class="w-4 rounded-sm"> 한국어</button>
+                        <button onclick="changeLang('en')"
+                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
+                                src="https://flagcdn.com/w20/us.png" class="w-4 rounded-sm"> English</button>
+                        <button onclick="changeLang('ja')"
+                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
+                                src="https://flagcdn.com/w20/jp.png" class="w-4 rounded-sm"> 日本語</button>
+                        <button onclick="changeLang('zh-CN')"
+                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
+                                src="https://flagcdn.com/w20/cn.png" class="w-4 rounded-sm"> 中文</button>
+                    </div>
+                </div>
+
+                <button class="gnb_menu_btn md:hidden text-slate-800 p-1 hover:bg-slate-100 rounded transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- Mobile Navigation Sidebar -->
+    <div id="gnb_all"
+        class="fixed top-0 -right-full w-[280px] h-full bg-white z-[2000] shadow-2xl transition-all duration-300 ease-in-out flex flex-col">
+        <div class="p-6 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-eng font-bold text-lg tracking-wider">MENU</span>
+                <button class="gnb_close_btn p-1 hover:rotate-90 transition-transform duration-300"><i
+                        class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="mb-4">
+                <p class="font-bold text-xl">환영합니다!</p>
+            </div>
+        </div>
+        <div class="flex-1 overflow-y-auto">
+            <ul class="flex flex-col text-sm font-medium text-slate-800">
+                <li class="border-b border-gray-50"><a href="index.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors">서비스 안내</a></li>
+                <li class="border-b border-gray-50"><a href="car_info.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors">차량 안내</a></li>
+                <li class="border-b border-gray-50"><a href="tour_seoul.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors text-blue-700 font-bold">서울 시내 투어</a>
+                </li>
+                <li class="border-b border-gray-50"><a href="apply.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors">서비스 신청</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="gnb_all_bg" class="invisible fixed inset-0 bg-black/60 z-[1500] opacity-0 transition-all duration-300">
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-[90px] md:pt-[110px] pb-24">
+        <div class="max-w-screen-xl mx-auto px-4 md:px-6">
+
+            <!-- Page Title -->
+            <div class="text-center mb-16 md:mb-24 fade-in">
+                <span
+                    class="text-blue-600 font-bold tracking-wider text-xs md:text-sm uppercase mb-3 block font-eng">Seoul
+                    City Tour</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">서울 시내 투어 코스 TOP 5</h2>
+                <p class="text-slate-500 text-lg break-keep max-w-2xl mx-auto">굿타임코리아가 엄선한 서울의 매력을 느낄 수 있는 대표적인 투어 코스를
+                    소개합니다. 고객님의 취향에 맞춰 전문 기사님이 편안하게 모십니다.</p>
+            </div>
+
+            <!-- Course 1: Tradition -->
+            <section class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-20 md:mb-32 fade-in delay-100">
+                <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="file:///C:/Users/pc cafe/.gemini/antigravity/brain/22df6bea-fd82-4593-9ece-d24a6428fc29/seoul_tour_palace_1770031806228.png"
+                        alt="경복궁 가을"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col items-start text-left">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold mb-4">COURSE
+                        01</span>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 break-keep">역사와 전통의 숨결,<br><span
+                            class="text-blue-600">고궁 투어</span></h3>
+                    <p class="text-slate-500 leading-relaxed mb-6 text-lg break-keep">조선 왕조의 위엄이 서린 경복궁을 시작으로, 북촌 한옥마을의
+                        고즈넉한 골목길을 거닐며 한국의 아름다움을 느껴보세요. 인사동에서 전통 차와 예술품을 즐기는 여유로운 코스입니다.</p>
+                    <ul
+                        class="flex flex-col gap-2 font-medium text-slate-700 bg-slate-50 w-full p-4 rounded-xl border border-slate-100">
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>경복궁 (수문장 교대식)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>북촌 한옥마을
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>인사동 쌈지길 & 찻집
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Course 2: Modern Gangnam -->
+            <section class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16 mb-20 md:mb-32 fade-in">
+                <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="file:///C:/Users/pc cafe/.gemini/antigravity/brain/22df6bea-fd82-4593-9ece-d24a6428fc29/seoul_tour_gangnam_1770032272816.png"
+                        alt="강남 전경"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col items-start md:items-start text-left">
+                    <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold mb-4">COURSE
+                        02</span>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 break-keep">서울의 화려한 현재,<br><span
+                            class="text-purple-600">강남 모던 라이프</span></h3>
+                    <p class="text-slate-500 leading-relaxed mb-6 text-lg break-keep">세계적인 랜드마크 롯데월드타워 서울스카이 전망대에서 서울을
+                        한눈에 내려다보고, 삼성동 코엑스몰 별마당 도서관에서 인증샷을 남겨보세요. 트렌디한 쇼핑과 미식을 즐길 수 있는 코스입니다.</p>
+                    <ul
+                        class="flex flex-col gap-2 font-medium text-slate-700 bg-slate-50 w-full p-4 rounded-xl border border-slate-100">
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>잠실 롯데월드타워 (서울스카이)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>봉은사 & 코엑스 별마당 도서관
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>압구정 로데오 & 가로수길
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Course 3: Nature Namsan -->
+            <section class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-20 md:mb-32 fade-in">
+                <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="file:///C:/Users/pc cafe/.gemini/antigravity/brain/22df6bea-fd82-4593-9ece-d24a6428fc29/seoul_tour_namsan_1770032651040.png"
+                        alt="남산타워"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col items-start text-left">
+                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold mb-4">COURSE
+                        03</span>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 break-keep">도심 속 힐링,<br><span
+                            class="text-green-600">남산 & 한강 파노라마</span></h3>
+                    <p class="text-slate-500 leading-relaxed mb-6 text-lg break-keep">서울의 상징 N서울타워에서 360도 파노라마 뷰를 감상하고,
+                        한강 공원에서 여유로운 피크닉이나 유람선을 즐겨보세요. 복잡한 도심 속에서 자연을 만끽하는 로맨틱한 코스입니다.</p>
+                    <ul
+                        class="flex flex-col gap-2 font-medium text-slate-700 bg-slate-50 w-full p-4 rounded-xl border border-slate-100">
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>남산 서울타워 & 케이블카
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>반포 한강공원 or 여의도 한강공원
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>이태원 경리단길
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Course 4: Hongdae Youth -->
+            <section class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16 mb-20 md:mb-32 fade-in">
+                <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="file:///C:/Users/pc cafe/.gemini/antigravity/brain/22df6bea-fd82-4593-9ece-d24a6428fc29/seoul_tour_hongdae_1770032871434.png"
+                        alt="홍대 거리"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col items-start text-left">
+                    <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-bold mb-4">COURSE
+                        04</span>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 break-keep">젊음과 열정의 거리,<br><span
+                            class="text-pink-500">홍대 & 연남 컬처 투어</span></h3>
+                    <p class="text-slate-500 leading-relaxed mb-6 text-lg break-keep">버스킹 공연과 개성 넘치는 패션 숍이 가득한 홍대 거리,
+                        숲길을 따라 예쁜 카페들이 줄지어 있는 연트럴파크(연남동)까지. 서울의 가장 힙하고 젊은 에너지를 느낄 수 있는 코스입니다.</p>
+                    <ul
+                        class="flex flex-col gap-2 font-medium text-slate-700 bg-slate-50 w-full p-4 rounded-xl border border-slate-100">
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-pink-500 rounded-full"></div>홍대 걷고 싶은 거리 (버스킹)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-pink-500 rounded-full"></div>연남동 경의선 숲길 (연트럴파크)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-pink-500 rounded-full"></div>망원시장 (K-스트릿 푸드 체험)
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Course 5: Night DDP -->
+            <section class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-20 md:mb-32 fade-in">
+                <div class="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="file:///C:/Users/pc cafe/.gemini/antigravity/brain/22df6bea-fd82-4593-9ece-d24a6428fc29/seoul_tour_ddp_1770033127912.png"
+                        alt="DDP 야경"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col items-start text-left">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold mb-4">COURSE
+                        05</span>
+                    <h3 class="text-2xl md:text-4xl font-bold mb-4 text-slate-900 break-keep">서울의 밤은 낮보다 아름답다,<br><span
+                            class="text-indigo-600">환상적인 야경 투어</span></h3>
+                    <p class="text-slate-500 leading-relaxed mb-6 text-lg break-keep">우주선이 내려앉은 듯한 DDP의 미래지향적인 야경과 청계천의
+                        등불, 그리고 한강 위를 수놓는 반포대교 달빛무지개분수까지. 잊지 못할 서울의 밤 풍경을 선사합니다.</p>
+                    <ul
+                        class="flex flex-col gap-2 font-medium text-slate-700 bg-slate-50 w-full p-4 rounded-xl border border-slate-100">
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>동대문 디자인 플라자 (DDP)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>청계천 야간 산책
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>반포대교 달빛무지개분수 & 세빛섬
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="ft" class="bg-slate-900 text-slate-400 text-sm">
+        <div class="max-w-screen-xl mx-auto px-6 py-12 md:py-16">
+            <div
+                class="flex flex-col md:flex-row justify-between items-center gap-8 mb-10 border-b border-white/10 pb-10">
+                <a href="index.html" class="flex flex-col items-center md:items-start group">
+                    <span class="text-2xl font-black text-white tracking-tighter mb-1 select-none">굿타임코리아</span>
+                    <span class="text-[10px] font-eng tracking-[0.4em] text-blue-500 uppercase">Premium Rent Car</span>
+                </a>
+                <div class="flex gap-6 font-medium text-slate-300">
+                    <a href="https://kcsrentcar.com/content/privacy"
+                        class="hover:text-white transition-colors">개인정보처리방침</a>
+                    <a href="https://kcsrentcar.com/content/provision"
+                        class="hover:text-white transition-colors">서비스이용약관</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between gap-8 text-center md:text-left leading-relaxed">
+                <div>
+                    <h3 class="font-bold text-white mb-4">Contact Info</h3>
+                    <p>대표이사 : 김세경</p>
+                    <p>주소: 서울특별시 강서구 방화동로3길 23, 3층 304호(방화동)</p>
+                    <p>사업자등록번호 : 779-81-03233 &nbsp;|&nbsp; 통신판매업신고번호 : 제 2025-인천중구-0769 호</p>
+                    <p class="mt-2 text-blue-400 font-bold">Tel: 02-2665-1232 / +82 10 5490 4740</p>
+                    <p>Email: lovepost@goodtimekorea.com &nbsp;|&nbsp; Fax: 02-2665-1233</p>
+                </div>
+                <div class="md:text-right">
+                    <p class="mt-8 md:mt-0 text-slate-600">Copyright &copy; 굿타임코리아. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" id="top_btn"
+            class="fixed right-6 bottom-6 w-12 h-12 bg-slate-800 text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors z-40 hidden md:flex items-center justify-center">
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </button>
+    </footer>
+
+    <script>
+        // Language & UI Logic
+        function setTransCookie(lang) {
+            var cookieVal = "/ko/" + lang;
+            var date = new Date();
+            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toUTCString();
+            document.cookie = "googtrans=" + cookieVal + expires + "; path=/;";
+            var host = location.hostname.replace('www.', '');
+            if (host) document.cookie = "googtrans=" + cookieVal + expires + "; path=/; domain=" + host + ";";
+        }
+
+        function changeLang(lang) {
+            localStorage.setItem('selected_lang', lang);
+            if (lang === 'ko') {
+                var exp = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                document.cookie = "googtrans=; " + exp + "; path=/;";
+                var host = location.hostname.replace('www.', '');
+                if (host) document.cookie = "googtrans=; " + exp + "; path=/; domain=" + host + ";";
+                location.href = location.href.split('#')[0];
+            } else {
+                setTransCookie(lang);
+                var newUrl = location.href.split('#')[0] + "#googtrans(ko|" + lang + ")";
+                location.href = newUrl;
+                location.reload();
+            }
+        }
+
+        function updateUI() {
+            const saved = localStorage.getItem('selected_lang') || 'ko';
+            const langData = {
+                'ko': { flag: 'kr', text: 'KOR' },
+                'en': { flag: 'us', text: 'ENG' },
+                'ja': { flag: 'jp', text: 'JPN' },
+                'zh-CN': { flag: 'cn', text: 'CHN' }
+            };
+            const item = langData[saved] || langData['ko'];
+            $('#active_flag').attr('src', 'https://flagcdn.com/w20/' + item.flag + '.png');
+            $('#active_lang_text').text(item.text);
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ko',
+                autoDisplay: false,
+            }, 'google_translate_element');
+        }
+
+        $(function () {
+            updateUI();
+
+            // Dropdown Toggle
+            $("#lang_btn").click(function (e) {
+                e.stopPropagation();
+                $("#lang_list").toggleClass("hidden");
+                $(this).find('i').toggleClass('rotate-180');
+            });
+            $(document).click(function () {
+                $("#lang_list").addClass("hidden");
+                $("#lang_btn i").removeClass('rotate-180');
+            });
+
+            // Mobile Menu
+            $(".gnb_menu_btn").click(function () {
+                $("#gnb_all_bg").removeClass("invisible opacity-0").addClass("visible opacity-100");
+                $("#gnb_all").removeClass("-right-full").addClass("right-0");
+                $('body').addClass('overflow-hidden');
+            });
+            $(".gnb_close_btn, #gnb_all_bg").click(function () {
+                $("#gnb_all").removeClass("right-0").addClass("-right-full");
+                $("#gnb_all_bg").removeClass("visible opacity-100").addClass("invisible opacity-0");
+                $('body').removeClass('overflow-hidden');
+            });
+
+            // Scroll Top
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 300) {
+                    $('#top_btn').fadeIn();
+                } else {
+                    $('#top_btn').fadeOut();
+                }
+
+                // Header Glass Effect on Scroll
+                if ($(this).scrollTop() > 50) {
+                    $('#hd').addClass('glass-header shadow-sm');
+                } else {
+                    // Start state matches
+                }
+            });
+
+            $("#top_btn").on("click", function () {
+                $("html, body").animate({ scrollTop: 0 }, 500);
+                return false;
+            });
+        });
+
+        // Original Google Translate Consistency Scripts
+        (function (ns) {
+            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
+            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
+            var saveLang = function (l) { try { localStorage.setItem('site_lang', l); } catch (e) { } };
+            var loadLang = function () { try { return localStorage.getItem('site_lang'); } catch (e) { return null; } };
+            function getGoogTrans() { try { var raw = document.cookie.split('; ').find(function (x) { return x.indexOf('googtrans=') === 0; }); return raw ? decodeURIComponent(raw.split('=')[1]) : ''; } catch (e) { return ''; } }
+
+            var revertingToKo = false;
+            function revertToKorean() {
+                if (revertingToKo) return;
+                revertingToKo = true;
+                saveLang(ns.PAGE_LANG);
+                setTimeout(function () { revertingToKo = false; }, 300);
+            }
+            function watchTranslateState() {
+                var htmlEl = document.documentElement;
+                var isTranslated = function () { var c = htmlEl.classList; return c.contains('translated-ltr') || c.contains('translated-rtl'); };
+                var lastState = isTranslated();
+                var obs = new MutationObserver(function () {
+                    var now = isTranslated();
+                    if (lastState === true && now === false) { revertToKorean(); }
+                    lastState = now;
+                });
+                obs.observe(htmlEl, { attributes: true, attributeFilter: ['class'] });
+            }
+            window.googleTranslateElementInit = function () {
+                new google.translate.TranslateElement({
+                    pageLanguage: ns.PAGE_LANG,
+                    includedLanguages: ns.SUPPORT_LANGS.join(','),
+                    autoDisplay: false,
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            };
+            document.addEventListener('DOMContentLoaded', function () {
+                watchTranslateState();
+            });
+        })(window.__gt = window.__gt || {});
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Analytics Strings (Preserved) -->
+    <script>var smipHomeCode = "smip20251208S0708T3529";</script>
+    <script src="//miracleintip.com/smip_log.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17777128864"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-17777128864');
+    </script>
+</body>
+
+</html>
