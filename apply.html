@@ -23,6 +23,8 @@
     <!-- jQuery -->
     <script src="https://kcsrentcar.com/js/jquery-1.12.4.min.js?ver=2304171"></script>
     <script src="https://kcsrentcar.com/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
+    <!-- PortOne SDK -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
     <style>
         body {
@@ -334,9 +336,28 @@
 
                     <hr class="border-slate-100">
 
-                    <button type="submit"
+                    <!-- Section: Payment Info -->
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><i
+                                class="fa-solid fa-credit-card text-blue-600"></i> 결제 정보</h3>
+                        <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-slate-600 font-semibold">예약금 (Deposit)</span>
+                                <span class="text-xl font-bold text-blue-700">10,000원</span>
+                            </div>
+                            <p class="text-xs text-slate-500">
+                                * 원활한 예약 진행을 위해 소정의 예약금을 미리 결제합니다.<br>
+                                * 최종 결제 금액에서 예약금은 차감됩니다.
+                            </p>
+                            <input type="hidden" id="paymentAmount" value="10000">
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-100">
+
+                    <button type="button" id="paymentBtn"
                         class="w-full bg-blue-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-2">
-                        신청하기
+                        예약금 결제 및 신청하기
                     </button>
                     <p class="text-xs text-center text-slate-400 mt-2">입력하신 정보는 상담 예약 용도로만 사용됩니다.</p>
                 </form>
@@ -475,6 +496,73 @@
             $("#top_btn").on("click", function () {
                 $("html, body").animate({ scrollTop: 0 }, 500);
                 return false;
+            });
+
+            // PortOne Payment Logic
+            var IMP = window.IMP;
+            IMP.init("imp00000000"); // 예: imp00000000 (테스트용 가맹점 식별코드)
+
+            $("#paymentBtn").click(function () {
+                // Form Validation
+                var form = $("form")[0];
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                var userName = $("#userName").val();
+                var userPhone = $("#userPhone").val();
+                var userEmail = $("#userEmail").val();
+                var paymentAmount = $("#paymentAmount").val(); // 10000
+
+                // Request Payment
+                IMP.request_pay({
+                    pg: "html5_inicis", // PG사 (이니시스 등)
+                    pay_method: "card", // 결제수단
+                    merchant_uid: "ord_" + new Date().getTime(), // 주문번호 (Unique)
+                    name: "굿타임코리아 예약금", // 주문명
+                    amount: paymentAmount, // 금액
+                    buyer_email: userEmail,
+                    buyer_name: userName,
+                    buyer_tel: userPhone,
+                }, function (rsp) { // callback
+                    if (rsp.success) {
+                        // Payment Success
+                        alert("결제가 완료되었습니다. 이메일 발송 화면으로 이동합니다.");
+
+                        // Construct Mail Body
+                        var body = "";
+                        body += "[예약자 정보]\n";
+                        body += "이름: " + userName + "\n";
+                        body += "전화번호: " + userPhone + "\n";
+                        body += "이메일: " + userEmail + "\n\n";
+
+                        body += "[일정 정보]\n";
+                        body += "출발 날짜: " + $("#depDate").val() + "\n";
+                        body += "출발 시간: " + $("#depTime").val() + "\n";
+                        body += "출발지: " + $("#depAddress").val() + "\n";
+                        body += "도착지: " + $("#arrAddress").val() + "\n";
+                        body += "인원: " + $("#passengerCount").val() + "명\n";
+                        body += "짐 갯수: " + $("#luggageCount").val() + "개\n\n";
+
+                        body += "[추가 요청사항]\n";
+                        body += $("#additionalInfo").val() + "\n\n";
+
+                        body += "[결제 정보]\n";
+                        body += "결제 금액: " + paymentAmount + "원\n";
+                        body += "결제 ID (imp_uid): " + rsp.imp_uid + "\n";
+                        body += "주문 번호 (merchant_uid): " + rsp.merchant_uid + "\n";
+
+                        // Send Mail via mailto
+                        var subject = encodeURIComponent("[굿타임코리아] 서비스 예약 신청 (" + userName + ")");
+                        var bodyEnc = encodeURIComponent(body);
+
+                        location.href = "mailto:lovepost@naver.com?subject=" + subject + "&body=" + bodyEnc;
+                    } else {
+                        // Payment Failed
+                        alert("결제에 실패하였습니다.\n에러내용: " + rsp.error_msg);
+                    }
+                });
             });
         });
 
