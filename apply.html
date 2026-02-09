@@ -23,8 +23,7 @@
     <!-- jQuery -->
     <script src="https://kcsrentcar.com/js/jquery-1.12.4.min.js?ver=2304171"></script>
     <script src="https://kcsrentcar.com/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
-    <!-- PortOne SDK -->
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
 
     <style>
         body {
@@ -154,6 +153,10 @@
                             투어<span
                                 class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
                     </li>
+                    <li><a href='payment.html'
+                            class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>결제하기<span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
                     <li><a href='apply.html'
                             class='text-[15px] font-semibold text-blue-700 transition-colors py-4 relative group'>서비스
                             신청<span
@@ -165,29 +168,27 @@
             <!-- Menu Button & Language -->
             <div class="flex items-center gap-4">
                 <!-- Language Selector -->
-                <div class="relative group" id="lang_select_box">
-                    <button type="button" id="lang_btn"
-                        class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 transition-colors">
-                        <img id="active_flag" src="https://flagcdn.com/w20/kr.png"
-                            class="w-4 h-4 rounded-sm object-cover shadow-sm">
-                        <span id="active_lang_text" class="hidden sm:inline">KOR</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+                <div class="flex items-center gap-1.5" id="lang_buttons">
+                    <button onclick="changeLang('ko')" id="btn_lang_ko"
+                        class="w-7 h-7 rounded overflow-hidden border border-slate-200 hover:scale-110 transition-transform shadow-sm opacity-60 hover:opacity-100"
+                        title="한국어">
+                        <img src="https://flagcdn.com/w40/kr.png" class="w-full h-full object-cover">
                     </button>
-                    <div id="lang_list"
-                        class="hidden absolute right-0 top-full mt-2 w-32 bg-white border border-gray-100 rounded-lg shadow-xl overflow-hidden ring-1 ring-black/5 z-50">
-                        <button onclick="changeLang('ko')"
-                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
-                                src="https://flagcdn.com/w20/kr.png" class="w-4 rounded-sm"> 한국어</button>
-                        <button onclick="changeLang('en')"
-                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
-                                src="https://flagcdn.com/w20/us.png" class="w-4 rounded-sm"> English</button>
-                        <button onclick="changeLang('ja')"
-                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
-                                src="https://flagcdn.com/w20/jp.png" class="w-4 rounded-sm"> 日本語</button>
-                        <button onclick="changeLang('zh-CN')"
-                            class="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-medium hover:bg-slate-50"><img
-                                src="https://flagcdn.com/w20/cn.png" class="w-4 rounded-sm"> 中文</button>
-                    </div>
+                    <button onclick="changeLang('en')" id="btn_lang_en"
+                        class="w-7 h-7 rounded overflow-hidden border border-slate-200 hover:scale-110 transition-transform shadow-sm opacity-60 hover:opacity-100"
+                        title="English">
+                        <img src="https://flagcdn.com/w40/us.png" class="w-full h-full object-cover">
+                    </button>
+                    <button onclick="changeLang('ja')" id="btn_lang_ja"
+                        class="w-7 h-7 rounded overflow-hidden border border-slate-200 hover:scale-110 transition-transform shadow-sm opacity-60 hover:opacity-100"
+                        title="日本語">
+                        <img src="https://flagcdn.com/w40/jp.png" class="w-full h-full object-cover">
+                    </button>
+                    <button onclick="changeLang('zh-CN')" id="btn_lang_zh"
+                        class="w-7 h-7 rounded overflow-hidden border border-slate-200 hover:scale-110 transition-transform shadow-sm opacity-60 hover:opacity-100"
+                        title="中文">
+                        <img src="https://flagcdn.com/w40/cn.png" class="w-full h-full object-cover">
+                    </button>
                 </div>
 
                 <button class="gnb_menu_btn md:hidden text-slate-800 p-1 hover:bg-slate-100 rounded transition-colors">
@@ -220,6 +221,8 @@
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors">차량 안내</a></li>
                 <li class="border-b border-gray-50"><a href="tour_seoul.html"
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors">서울 시내 투어</a></li>
+                <li class="border-b border-gray-50"><a href="payment.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors">결제하기</a></li>
                 <li class="border-b border-gray-50"><a href="apply.html"
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors text-blue-700 font-bold">서비스 신청</a>
                 </li>
@@ -336,28 +339,9 @@
 
                     <hr class="border-slate-100">
 
-                    <!-- Section: Payment Info -->
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><i
-                                class="fa-solid fa-credit-card text-blue-600"></i> 결제 정보</h3>
-                        <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="text-slate-600 font-semibold">예약금 (Deposit)</span>
-                                <span class="text-xl font-bold text-blue-700">10,000원</span>
-                            </div>
-                            <p class="text-xs text-slate-500">
-                                * 원활한 예약 진행을 위해 소정의 예약금을 미리 결제합니다.<br>
-                                * 최종 결제 금액에서 예약금은 차감됩니다.
-                            </p>
-                            <input type="hidden" id="paymentAmount" value="10000">
-                        </div>
-                    </div>
-
-                    <hr class="border-slate-100">
-
-                    <button type="button" id="paymentBtn"
+                    <button type="submit"
                         class="w-full bg-blue-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-2">
-                        예약금 결제 및 신청하기
+                        신청하기
                     </button>
                     <p class="text-xs text-center text-slate-400 mt-2">입력하신 정보는 상담 예약 용도로만 사용됩니다.</p>
                 </form>
@@ -433,15 +417,14 @@
 
         function updateUI() {
             const saved = localStorage.getItem('selected_lang') || 'ko';
-            const langData = {
-                'ko': { flag: 'kr', text: 'KOR' },
-                'en': { flag: 'us', text: 'ENG' },
-                'ja': { flag: 'jp', text: 'JPN' },
-                'zh-CN': { flag: 'cn', text: 'CHN' }
-            };
-            const item = langData[saved] || langData['ko'];
-            $('#active_flag').attr('src', 'https://flagcdn.com/w20/' + item.flag + '.png');
-            $('#active_lang_text').text(item.text);
+            $('[id^=btn_lang_]').removeClass('ring-2 ring-blue-500 opacity-100').addClass('opacity-60');
+
+            let target = 'ko';
+            if (saved === 'en') target = 'en';
+            if (saved === 'ja') target = 'ja';
+            if (saved === 'zh-CN') target = 'zh';
+
+            $('#btn_lang_' + target).removeClass('opacity-60').addClass('ring-2 ring-blue-500 opacity-100');
         }
 
         function googleTranslateElementInit() {
@@ -454,16 +437,7 @@
         $(function () {
             updateUI();
 
-            // Dropdown Toggle
-            $("#lang_btn").click(function (e) {
-                e.stopPropagation();
-                $("#lang_list").toggleClass("hidden");
-                $(this).find('i').toggleClass('rotate-180');
-            });
-            $(document).click(function () {
-                $("#lang_list").addClass("hidden");
-                $("#lang_btn i").removeClass('rotate-180');
-            });
+
 
             // Mobile Menu
             $(".gnb_menu_btn").click(function () {
@@ -498,72 +472,7 @@
                 return false;
             });
 
-            // PortOne Payment Logic
-            var IMP = window.IMP;
-            IMP.init("imp00000000"); // 예: imp00000000 (테스트용 가맹점 식별코드)
 
-            $("#paymentBtn").click(function () {
-                // Form Validation
-                var form = $("form")[0];
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return;
-                }
-
-                var userName = $("#userName").val();
-                var userPhone = $("#userPhone").val();
-                var userEmail = $("#userEmail").val();
-                var paymentAmount = $("#paymentAmount").val(); // 10000
-
-                // Request Payment
-                IMP.request_pay({
-                    pg: "html5_inicis", // PG사 (이니시스 등)
-                    pay_method: "card", // 결제수단
-                    merchant_uid: "ord_" + new Date().getTime(), // 주문번호 (Unique)
-                    name: "굿타임코리아 예약금", // 주문명
-                    amount: paymentAmount, // 금액
-                    buyer_email: userEmail,
-                    buyer_name: userName,
-                    buyer_tel: userPhone,
-                }, function (rsp) { // callback
-                    if (rsp.success) {
-                        // Payment Success
-                        alert("결제가 완료되었습니다. 이메일 발송 화면으로 이동합니다.");
-
-                        // Construct Mail Body
-                        var body = "";
-                        body += "[예약자 정보]\n";
-                        body += "이름: " + userName + "\n";
-                        body += "전화번호: " + userPhone + "\n";
-                        body += "이메일: " + userEmail + "\n\n";
-
-                        body += "[일정 정보]\n";
-                        body += "출발 날짜: " + $("#depDate").val() + "\n";
-                        body += "출발 시간: " + $("#depTime").val() + "\n";
-                        body += "출발지: " + $("#depAddress").val() + "\n";
-                        body += "도착지: " + $("#arrAddress").val() + "\n";
-                        body += "인원: " + $("#passengerCount").val() + "명\n";
-                        body += "짐 갯수: " + $("#luggageCount").val() + "개\n\n";
-
-                        body += "[추가 요청사항]\n";
-                        body += $("#additionalInfo").val() + "\n\n";
-
-                        body += "[결제 정보]\n";
-                        body += "결제 금액: " + paymentAmount + "원\n";
-                        body += "결제 ID (imp_uid): " + rsp.imp_uid + "\n";
-                        body += "주문 번호 (merchant_uid): " + rsp.merchant_uid + "\n";
-
-                        // Send Mail via mailto
-                        var subject = encodeURIComponent("[굿타임코리아] 서비스 예약 신청 (" + userName + ")");
-                        var bodyEnc = encodeURIComponent(body);
-
-                        location.href = "mailto:lovepost@naver.com?subject=" + subject + "&body=" + bodyEnc;
-                    } else {
-                        // Payment Failed
-                        alert("결제에 실패하였습니다.\n에러내용: " + rsp.error_msg);
-                    }
-                });
-            });
         });
 
         // Original Google Translate Consistency Scripts
