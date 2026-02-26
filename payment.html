@@ -20,10 +20,6 @@
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- jQuery -->
-    <script src="https://kcsrentcar.com/js/jquery-1.12.4.min.js?ver=2304171"></script>
-    <script src="https://kcsrentcar.com/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
-
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -78,24 +74,32 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-    </style>
 
-    <script>
-        (function (ns) {
-            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
-            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
-            try {
-                var saved = localStorage.getItem('site_lang');
-                if (!saved || saved === ns.PAGE_LANG) return;
-                var want = '/' + ns.PAGE_LANG + '/' + saved;
-                var raw = document.cookie.split('; ').find(function (x) { return x.indexOf('googtrans=') === 0; });
-                var now = raw ? decodeURIComponent(raw.split('=')[1]) : '';
-                if (now === want) return;
-                var maxAge = 60 * 60 * 24 * 365;
-                document.cookie = 'googtrans=' + want + '; path=/; max-age=' + maxAge;
-            } catch (e) { }
-        })(window.__gt = window.__gt || {});
-    </script>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+    </style>
 </head>
 
 <body class="text-slate-800 bg-slate-50 selection:bg-blue-100 selection:text-blue-900">
@@ -150,6 +154,11 @@
                 <ul class="flex items-center gap-8">
                     <li><a href='index.html'
                             class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>서비스
+                            안내<span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                    <li><a href='pricing.html'
+                            class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>요금
                             안내<span
                                 class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
                     </li>
@@ -228,6 +237,8 @@
             <ul class="flex flex-col text-sm font-medium text-slate-800">
                 <li class="border-b border-gray-50"><a href="index.html"
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors">서비스 안내</a></li>
+                <li class="border-b border-gray-50"><a href="pricing.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors">요금 안내</a></li>
                 <li class="border-b border-gray-50"><a href="car_info.html"
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors">차량 안내</a></li>
                 <li class="border-b border-gray-50"><a href="tour_seoul.html"
@@ -245,178 +256,263 @@
     </div>
 
     <!-- Main Content -->
-    <main class="pt-[80px] md:pt-[100px] pb-20">
-        <div class="max-w-screen-md mx-auto px-4">
+    <main
+        class="pt-[90px] md:pt-[120px] pb-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+        <div class="max-w-screen-md mx-auto px-4 relative z-10">
             <!-- Title -->
-            <div class="text-center mb-10">
+            <div class="text-center mb-12 fade-in-up">
                 <span
-                    class="text-blue-600 font-bold tracking-wider text-xs md:text-sm uppercase mb-2 block font-eng">Payment</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">결제 및 입금 확인</h2>
-                <p class="text-slate-500 break-keep">원하시는 결제 수단(QR코드)으로 입금 후,<br>아래 양식을 작성하여 '확인 요청'을 해주세요.</p>
+                    class="text-blue-200 font-bold tracking-widest text-sm uppercase mb-3 block font-eng drop-shadow-md">Secure
+                    Payment</span>
+                <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tight drop-shadow-xl text-white">결제 및 입금 확인
+                </h2>
+                <p class="text-white font-medium md:text-lg break-keep max-w-xl mx-auto drop-shadow-md leading-relaxed">
+                    원하시는 결제 수단으로 입금해 주신 후,<br class="hidden md:block">아래 정보를 입력하여 확인 요청을 진행해 주세요.</p>
             </div>
 
-            <!-- QR Code Section: Domestic -->
-            <h3 class="text-xl font-bold text-slate-800 mb-4 border-l-4 border-blue-600 pl-3">국내 결제 (Domestic Payment)
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                <!-- QR 1: KakaoPay -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-solid fa-qrcode text-4xl"></i>
-                        <!-- Replace src with actual QR image -->
-                        <!-- <img src="imgs/qr_kakao.png" class="w-full h-full object-cover"> -->
+            <!-- Pre-Payment Banner -->
+            <div class="fade-in-up delay-100 mb-8">
+                <div
+                    class="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 transform hover:scale-[1.01] transition-transform">
+                    <div class="text-white text-center md:text-left">
+                        <h3 class="text-xl font-bold mb-2 flex items-center justify-center md:justify-start gap-2">
+                            <i class="fa-solid fa-credit-card text-blue-300"></i> 예약금 카드 결제가 필요하신가요?
+                        </h3>
+                        <p class="text-blue-50 text-sm md:text-base opacity-80 leading-relaxed">온라인으로 안전하게 예약금(50,000원)
+                            선결제를 바로 진행할 수 있습니다. QR 결제가 번거로우시다면 신용카드 결제를 이용해 보세요.</p>
                     </div>
-                    <span class="font-bold text-slate-700">카카오페이</span>
-                </div>
-                <!-- QR 2: NaverPay -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-solid fa-qrcode text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">네이버페이</span>
-                </div>
-                <!-- QR 3: Toss -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-solid fa-qrcode text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">토스</span>
-                </div>
-                <!-- QR 4: Bank -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-solid fa-building-columns text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">계좌이체</span>
+                    <a href="checkout.html"
+                        class="whitespace-nowrap w-full md:w-auto text-center bg-white text-blue-800 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl">
+                        예약금 카드결제 <i class="fa-solid fa-arrow-right ml-1 text-sm"></i>
+                    </a>
                 </div>
             </div>
 
-            <!-- QR Code Section: International -->
-            <h3 class="text-xl font-bold text-slate-800 mb-4 border-l-4 border-green-600 pl-3">해외 결제 (International
-                Payment)</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-                <!-- QR 1: PayPal -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-brands fa-paypal text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">PayPal</span>
-                </div>
-                <!-- QR 2: WeChat Pay -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-brands fa-weixin text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">WeChat Pay</span>
-                </div>
-                <!-- QR 3: AliPay -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-brands fa-alipay text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">AliPay</span>
-                </div>
-                <!-- QR 4: UnionPay -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <i class="fa-regular fa-credit-card text-4xl"></i>
-                    </div>
-                    <span class="font-bold text-slate-700">UnionPay</span>
-                </div>
-                <!-- QR 5: PayPay -->
-                <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-100 flex flex-col items-center gap-3">
-                    <div
-                        class="bg-slate-100 w-full aspect-square rounded-lg flex items-center justify-center text-slate-400">
-                        <span class="text-2xl font-bold">P</span>
-                    </div>
-                    <span class="font-bold text-slate-700">PayPay (Japan)</span>
-                </div>
-            </div>
+            <!-- Main Content Card -->
+            <div class="bg-white rounded-[2rem] shadow-2xl p-6 md:p-10 border border-slate-100 fade-in-up delay-200">
 
-            <!-- Payment Confirmation Form -->
-            <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-6 md:p-10 border border-slate-50">
-                <form id="paymentForm" class="flex flex-col gap-6">
-                    <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
-                        <i class="fa-regular fa-paper-plane text-blue-600"></i> 입금 완료 후 작성 필요
-                    </h3>
-
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1.5">
-                            <label for="payName" class="text-sm font-semibold text-slate-600">입금자명 (Name)</label>
-                            <input type="text" id="payName" required
-                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
-                                placeholder="홍길동">
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label for="payPhone" class="text-sm font-semibold text-slate-600">휴대폰 번호 (Phone)</label>
-                            <input type="tel" id="payPhone" required
-                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
-                                placeholder="010-1234-5678">
-                        </div>
+                <!-- QR Code Definitions -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-1.5 h-8 bg-blue-600 rounded-full"></div>
+                        <h3 class="text-2xl font-bold text-slate-800 tracking-tight">계좌 및 QR코드 전송</h3>
                     </div>
 
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1.5">
-                            <label for="payAmount" class="text-sm font-semibold text-slate-600">입금 금액 (Amount)</label>
-                            <div class="relative">
-                                <input type="number" id="payAmount" required
-                                    class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none text-right pr-8"
-                                    placeholder="10000">
-                                <span class="absolute right-4 top-3 text-slate-400 text-sm">원</span>
+                    <div class="space-y-10">
+                        <!-- Domestic -->
+                        <div class="relative">
+                            <span
+                                class="absolute -top-3 left-4 inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold font-eng tracking-wider z-10 border border-white">DOMESTIC</span>
+                            <div
+                                class="border border-blue-50 bg-blue-50/20 rounded-2xl p-6 pt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <!-- QR 1 -->
+                                <div
+                                    class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex flex-col items-center justify-center gap-3 group cursor-pointer h-32">
+                                    <div
+                                        class="bg-[#FEE500] text-[#371D1E] w-12 h-12 rounded-full flex items-center justify-center text-xl mb-1 group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-comment"></i>
+                                    </div>
+                                    <span class="font-bold text-slate-700 text-sm text-center">카카오페이</span>
+                                </div>
+                                <!-- QR 2 -->
+                                <div
+                                    class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex flex-col items-center justify-center gap-3 group cursor-pointer h-32">
+                                    <div
+                                        class="bg-[#03C75A] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-black mb-1 group-hover:scale-110 transition-transform">
+                                        N
+                                    </div>
+                                    <span class="font-bold text-slate-700 text-sm text-center">네이버페이</span>
+                                </div>
+                                <!-- QR 3 -->
+                                <div
+                                    class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-200 transition-all flex flex-col items-center justify-center gap-3 group cursor-pointer h-32">
+                                    <div
+                                        class="bg-[#3182F6] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-1 group-hover:scale-110 transition-transform">
+                                        t
+                                    </div>
+                                    <span class="font-bold text-slate-700 text-sm text-center">토스페이</span>
+                                </div>
+                                <!-- QR 4 -->
+                                <div
+                                    class="bg-slate-800 p-5 rounded-xl border border-slate-700 shadow-sm hover:shadow-md hover:border-slate-600 transition-all flex flex-col items-center justify-center gap-3 group cursor-pointer h-32">
+                                    <div
+                                        class="bg-slate-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl mb-1 group-hover:scale-110 transition-transform border border-slate-600">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                    </div>
+                                    <span class="font-bold text-slate-100 text-sm text-center">계좌이체</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label for="payMethod" class="text-sm font-semibold text-slate-600">결제 수단 (Method)</label>
-                            <select id="payMethod"
-                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none bg-white">
-                                <option value="카카오페이">카카오페이 (KakaoPay)</option>
-                                <option value="네이버페이">네이버페이 (NaverPay)</option>
-                                <option value="토스">토스 (Toss)</option>
-                                <option value="계좌이체">계좌이체 (Bank Transfer)</option>
-                                <option disabled>──────────</option>
-                                <option value="PayPal">PayPal</option>
-                                <option value="WeChatPay">WeChat Pay</option>
-                                <option value="AliPay">AliPay</option>
-                                <option value="UnionPay">UnionPay</option>
-                                <option value="PayPay">PayPay (Japan)</option>
-                                <option value="기타">기타 (Other)</option>
-                            </select>
+
+                        <!-- International -->
+                        <div class="relative mt-10">
+                            <span
+                                class="absolute -top-3 left-4 inline-block bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold font-eng tracking-wider z-10 border border-white">INTERNATIONAL</span>
+                            <div
+                                class="border border-emerald-50 bg-emerald-50/20 rounded-2xl p-6 pt-8 grid grid-cols-2 md:grid-cols-5 gap-3">
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center gap-3 hover:shadow-md hover:border-emerald-200 transition-all h-28">
+                                    <i class="fa-brands fa-paypal text-3xl text-[#003087]"></i>
+                                    <span
+                                        class="font-bold text-slate-700 text-[11px] uppercase tracking-wide">PayPal</span>
+                                </div>
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center gap-3 hover:shadow-md hover:border-emerald-200 transition-all h-28">
+                                    <i class="fa-brands fa-weixin text-3xl text-[#07C160]"></i>
+                                    <span
+                                        class="font-bold text-slate-700 text-[11px] uppercase tracking-wide text-center leading-tight">WeChat<br>Pay</span>
+                                </div>
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center gap-3 hover:shadow-md hover:border-emerald-200 transition-all h-28">
+                                    <i class="fa-brands fa-alipay text-3xl text-[#1677FF]"></i>
+                                    <span
+                                        class="font-bold text-slate-700 text-[11px] uppercase tracking-wide">AliPay</span>
+                                </div>
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center gap-3 hover:shadow-md hover:border-emerald-200 transition-all h-28">
+                                    <i class="fa-regular fa-credit-card text-3xl text-red-600"></i>
+                                    <span
+                                        class="font-bold text-slate-700 text-[11px] uppercase tracking-wide text-center">UnionPay</span>
+                                </div>
+                                <div
+                                    class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex flex-col items-center justify-center gap-3 hover:shadow-md hover:border-emerald-200 transition-all h-28">
+                                    <div class="font-black text-2xl leading-none text-[#FF0033] mb-1">P</div>
+                                    <span
+                                        class="font-bold text-slate-700 text-[11px] uppercase tracking-wide">PayPay</span>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
+                </div>
 
-                    <div class="flex flex-col gap-4">
-                        <div class="flex flex-col gap-1.5">
-                            <label for="depAddress" class="text-sm font-semibold text-slate-600">출발지 주소
-                                (Departure)</label>
-                            <input type="text" id="depAddress" required
-                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none bg-blue-50/50"
-                                placeholder="서울시 강남구...">
-                        </div>
-                        <div class="flex flex-col gap-1.5">
-                            <label for="arrAddress" class="text-sm font-semibold text-slate-600">도착지 주소
-                                (Arrival)</label>
-                            <input type="text" id="arrAddress" required
-                                class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none bg-blue-50/50"
-                                placeholder="인천공항 T1...">
-                        </div>
+                <hr class="border-slate-100 my-12">
+
+                <!-- Form Section -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-1.5 h-8 bg-blue-600 rounded-full"></div>
+                        <h3 class="text-2xl font-bold text-slate-800 tracking-tight">입금 확인 요청서</h3>
                     </div>
+                    <p class="text-slate-500 mb-8 border-l-4 border-slate-200 pl-3">원활한 예약 확정을 위해, 입금 및 결제 진행 후 아래의 항목을
+                        빠짐없이 작성해 주세요.</p>
 
-                    <hr class="border-slate-100 my-2">
+                    <form id="paymentForm" class="flex flex-col gap-6" action="https://formspree.io/f/YOUR_FORM_ID"
+                        method="POST">
+                        <input type="hidden" name="_next" value="https://goodtimekorea.com/apply_complete.html">
+                        <input type="hidden" name="_subject" value="[굿타임코리아] 입금/결제 확인 요청">
 
-                    <button type="button" id="submitBtn"
-                        class="w-full bg-blue-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-                        결제 확인 요청 (Send Email)
-                    </button>
-                    <p class="text-xs text-center text-slate-400">버튼을 누르면 이메일 앱이 실행됩니다.</p>
-                </form>
+                        <!-- Row 1 -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="flex flex-col gap-2 relative">
+                                <label for="payName" class="text-sm font-semibold text-slate-700">입금자명 <span
+                                        class="text-blue-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-regular fa-user"></i>
+                                    </div>
+                                    <input type="text" id="payName" name="payName" required
+                                        class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
+                                        placeholder="홍길동">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 relative">
+                                <label for="payPhone" class="text-sm font-semibold text-slate-700">연락처 <span
+                                        class="text-blue-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <input type="tel" id="payPhone" name="payPhone" required
+                                        class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
+                                        placeholder="010-0000-0000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="flex flex-col gap-2 relative">
+                                <label for="payAmount" class="text-sm font-semibold text-slate-700">입금 금액 <span
+                                        class="text-blue-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-won-sign"></i>
+                                    </div>
+                                    <input type="number" id="payAmount" name="payAmount" required
+                                        class="w-full pl-10 pr-12 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800 font-bold"
+                                        placeholder="50,000" min="0">
+                                    <span
+                                        class="absolute right-4 top-3.5 text-slate-400 font-semibold text-sm">KRW</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-2 relative">
+                                <label for="payMethod" class="text-sm font-semibold text-slate-700">결제 수단 <span
+                                        class="text-blue-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 z-10">
+                                        <i class="fa-solid fa-wallet"></i>
+                                    </div>
+                                    <select id="payMethod" name="payMethod"
+                                        class="w-full pl-11 pr-10 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800 appearance-none cursor-pointer">
+                                        <optgroup label="국내 결제">
+                                            <option value="카카오페이">카카오페이 / KakaoPay</option>
+                                            <option value="네이버페이">네이버페이 / NaverPay</option>
+                                            <option value="토스">토스 / Toss</option>
+                                            <option value="계좌이체">계좌이체 / Bank Transfer</option>
+                                        </optgroup>
+                                        <optgroup label="해외 결제">
+                                            <option value="PayPal">PayPal</option>
+                                            <option value="WeChatPay">WeChat Pay</option>
+                                            <option value="AliPay">AliPay</option>
+                                            <option value="UnionPay">UnionPay</option>
+                                            <option value="PayPay">PayPay (Japan)</option>
+                                        </optgroup>
+                                        <option value="기타">기타 / Other</option>
+                                    </select>
+                                    <div
+                                        class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-chevron-down text-sm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Optional: Addressing details -->
+                        <div class="flex flex-col gap-4 mt-2 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-slate-400"></i> 운행 정보 (선택사항)
+                            </h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-2">
+                                    <input type="text" id="depAddress" name="depAddress"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
+                                        placeholder="출발지 (Departure)">
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <input type="text" id="arrAddress" name="arrAddress"
+                                        class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
+                                        placeholder="도착지 (Arrival)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <button type="submit" id="submitBtn2"
+                            class="w-full mt-4 bg-slate-900 text-white font-bold text-xl py-5 rounded-2xl shadow-lg shadow-slate-900/20 hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 transition-all transform hover:-translate-y-1 relative overflow-hidden group">
+                            <span class="relative z-10 flex items-center justify-center gap-2">입금 내역 확인 요청 <i
+                                    class="fa-solid fa-paper-plane text-sm opacity-80 mt-0.5"></i></span>
+                            <div
+                                class="absolute inset-0 h-full w-full bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300">
+                            </div>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
@@ -455,6 +551,7 @@
                     <p>대표이사 : 김세경</p>
                     <p>주소: 서울특별시 강서구 방화동로3길 23, 3층 304호(방화동)</p>
                     <p>사업자등록번호 : 779-81-03233 &nbsp;|&nbsp; 통신판매업신고번호 : 제 2025-인천중구-0769 호</p>
+                    <p>개인정보관리책임자 : 김세경 (lovepost@goodtimekorea.com)</p>
                     <p class="mt-2 text-blue-400 font-bold">Tel: 02-2665-1232 / +82 10 5490 4740</p>
                     <p>Email: lovepost@goodtimekorea.com &nbsp;|&nbsp; Fax: 02-2665-1233</p>
                 </div>
@@ -470,160 +567,8 @@
         </button>
     </footer>
 
-    <script>
-        // Language & UI Logic (Same as other pages)
-        function setTransCookie(lang) {
-            var cookieVal = "/ko/" + lang;
-            var date = new Date();
-            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-            var expires = "; expires=" + date.toUTCString();
-            document.cookie = "googtrans=" + cookieVal + expires + "; path=/;";
-            var host = location.hostname.replace('www.', '');
-            if (host) document.cookie = "googtrans=" + cookieVal + expires + "; path=/; domain=" + host + ";";
-        }
-
-        function changeLang(lang) {
-            localStorage.setItem('selected_lang', lang);
-            if (lang === 'ko') {
-                var exp = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "googtrans=; " + exp + "; path=/;";
-                var host = location.hostname.replace('www.', '');
-                if (host) document.cookie = "googtrans=; " + exp + "; path=/; domain=" + host + ";";
-                location.href = location.href.split('#')[0];
-            } else {
-                setTransCookie(lang);
-                var newUrl = location.href.split('#')[0] + "#googtrans(ko|" + lang + ")";
-                location.href = newUrl;
-                location.reload();
-            }
-        }
-
-        function updateUI() {
-            const saved = localStorage.getItem('selected_lang') || 'ko';
-            $('[id^=btn_lang_]').removeClass('ring-2 ring-blue-500 opacity-100').addClass('opacity-60');
-
-            let target = 'ko';
-            if (saved === 'en') target = 'en';
-            if (saved === 'ja') target = 'ja';
-            if (saved === 'zh-CN') target = 'zh';
-
-            $('#btn_lang_' + target).removeClass('opacity-60').addClass('ring-2 ring-blue-500 opacity-100');
-        }
-
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'ko',
-                autoDisplay: false,
-            }, 'google_translate_element');
-        }
-
-        $(function () {
-            updateUI();
-
-
-
-            // Mobile Menu
-            $(".gnb_menu_btn").click(function () {
-                $("#gnb_all_bg").removeClass("invisible opacity-0").addClass("visible opacity-100");
-                $("#gnb_all").removeClass("-right-full").addClass("right-0");
-                $('body').addClass('overflow-hidden');
-            });
-            $(".gnb_close_btn, #gnb_all_bg").click(function () {
-                $("#gnb_all").removeClass("right-0").addClass("-right-full");
-                $("#gnb_all_bg").removeClass("visible opacity-100").addClass("invisible opacity-0");
-                $('body').removeClass('overflow-hidden');
-            });
-
-            // Scroll Top
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 300) {
-                    $('#top_btn').fadeIn();
-                } else {
-                    $('#top_btn').fadeOut();
-                }
-                // Header Glass Effect
-                if ($(this).scrollTop() > 50) {
-                    $('#hd').addClass('glass-header shadow-sm');
-                }
-            });
-
-            $("#top_btn").on("click", function () {
-                $("html, body").animate({ scrollTop: 0 }, 500);
-                return false;
-            });
-
-            // Payment Form Logic
-            $("#submitBtn").click(function () {
-                var form = $("#paymentForm")[0];
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return;
-                }
-
-                var name = $("#payName").val();
-                var phone = $("#payPhone").val();
-                var amount = $("#payAmount").val();
-                var method = $("#payMethod").val();
-                var dep = $("#depAddress").val();
-                var arr = $("#arrAddress").val();
-
-                var body = "";
-                body += "[결제 확인 요청]\n";
-                body += "입금자명: " + name + "\n";
-                body += "휴대폰: " + phone + "\n";
-                body += "입금금액: " + amount + "원\n";
-                body += "결제수단: " + method + "\n\n";
-                body += "[이동 정보]\n";
-                body += "출발지: " + dep + "\n";
-                body += "도착지: " + arr + "\n";
-
-                var subject = encodeURIComponent("[굿타임코리아] 결제 확인 요청 (" + name + ")");
-                var bodyEnc = encodeURIComponent(body);
-
-                location.href = "mailto:lovepost@naver.com?subject=" + subject + "&body=" + bodyEnc;
-            });
-        });
-
-        // Original Google Translate Consistency Scripts
-        (function (ns) {
-            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
-            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
-            var saveLang = function (l) { try { localStorage.setItem('site_lang', l); } catch (e) { } };
-            var loadLang = function () { try { return localStorage.getItem('site_lang'); } catch (e) { return null; } };
-            function getGoogTrans() { try { var raw = document.cookie.split('; ').find(function (x) { return x.indexOf('googtrans=') === 0; }); return raw ? decodeURIComponent(raw.split('=')[1]) : ''; } catch (e) { return ''; } }
-
-            var revertingToKo = false;
-            function revertToKorean() {
-                if (revertingToKo) return;
-                revertingToKo = true;
-                saveLang(ns.PAGE_LANG);
-                setTimeout(function () { revertingToKo = false; }, 300);
-            }
-            function watchTranslateState() {
-                var htmlEl = document.documentElement;
-                var isTranslated = function () { var c = htmlEl.classList; return c.contains('translated-ltr') || c.contains('translated-rtl'); };
-                var lastState = isTranslated();
-                var obs = new MutationObserver(function () {
-                    var now = isTranslated();
-                    if (lastState === true && now === false) { revertToKorean(); }
-                    lastState = now;
-                });
-                obs.observe(htmlEl, { attributes: true, attributeFilter: ['class'] });
-            }
-            window.googleTranslateElementInit = function () {
-                new google.translate.TranslateElement({
-                    pageLanguage: ns.PAGE_LANG,
-                    includedLanguages: ns.SUPPORT_LANGS.join(','),
-                    autoDisplay: false,
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element');
-            };
-            document.addEventListener('DOMContentLoaded', function () {
-                watchTranslateState();
-            });
-        })(window.__gt = window.__gt || {});
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- Scripts -->
+    <script src="./js/i18n.js"></script>
 
     <!-- Analytics Strings (Preserved) -->
     <script>var smipHomeCode = "smip20251208S0708T3529";</script>

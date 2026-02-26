@@ -15,14 +15,10 @@
         rel="stylesheet">
 
     <!-- External CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- jQuery -->
-    <script src="https://kcsrentcar.com/js/jquery-1.12.4.min.js?ver=2304171"></script>
-    <script src="https://kcsrentcar.com/js/jquery-migrate-1.4.1.min.js?ver=2304171"></script>
 
 
     <style>
@@ -81,22 +77,7 @@
         }
     </style>
 
-    <script>
-        (function (ns) {
-            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
-            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
-            try {
-                var saved = localStorage.getItem('site_lang');
-                if (!saved || saved === ns.PAGE_LANG) return;
-                var want = '/' + ns.PAGE_LANG + '/' + saved;
-                var raw = document.cookie.split('; ').find(function (x) { return x.indexOf('googtrans=') === 0; });
-                var now = raw ? decodeURIComponent(raw.split('=')[1]) : '';
-                if (now === want) return;
-                var maxAge = 60 * 60 * 24 * 365;
-                document.cookie = 'googtrans=' + want + '; path=/; max-age=' + maxAge;
-            } catch (e) { }
-        })(window.__gt = window.__gt || {});
-    </script>
+
 </head>
 
 <body class="text-slate-800 bg-slate-50 selection:bg-blue-100 selection:text-blue-900">
@@ -151,6 +132,11 @@
                 <ul class="flex items-center gap-8">
                     <li><a href='index.html'
                             class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>서비스
+                            안내<span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
+                    </li>
+                    <li><a href='pricing.html'
+                            class='text-[15px] font-semibold text-slate-700 hover:text-blue-700 transition-colors py-4 relative group'>요금
                             안내<span
                                 class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span></a>
                     </li>
@@ -229,6 +215,8 @@
             <ul class="flex flex-col text-sm font-medium text-slate-800">
                 <li class="border-b border-gray-50"><a href="index.html"
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors">서비스 안내</a></li>
+                <li class="border-b border-gray-50"><a href="pricing.html"
+                        class="block px-6 py-4 hover:bg-slate-50 transition-colors">요금 안내</a></li>
                 <li class="border-b border-gray-50"><a href="car_info.html"
                         class="block px-6 py-4 hover:bg-slate-50 transition-colors">차량 안내</a></li>
                 <li class="border-b border-gray-50"><a href="tour_seoul.html"
@@ -424,6 +412,7 @@
                     <p>대표이사 : 김세경</p>
                     <p>주소: 서울특별시 강서구 방화동로3길 23, 3층 304호(방화동)</p>
                     <p>사업자등록번호 : 779-81-03233 &nbsp;|&nbsp; 통신판매업신고번호 : 제 2025-인천중구-0769 호</p>
+                    <p>개인정보관리책임자 : 김세경 (lovepost@goodtimekorea.com)</p>
                     <p class="mt-2 text-blue-400 font-bold">Tel: 02-2665-1232 / +82 10 5490 4740</p>
                     <p>Email: lovepost@goodtimekorea.com &nbsp;|&nbsp; Fax: 02-2665-1233</p>
                 </div>
@@ -439,134 +428,8 @@
         </button>
     </footer>
 
-    <script>
-        // Language & UI Logic
-        function setTransCookie(lang) {
-            var cookieVal = "/ko/" + lang;
-            var date = new Date();
-            date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-            var expires = "; expires=" + date.toUTCString();
-            document.cookie = "googtrans=" + cookieVal + expires + "; path=/;";
-            var host = location.hostname.replace('www.', '');
-            if (host) document.cookie = "googtrans=" + cookieVal + expires + "; path=/; domain=" + host + ";";
-        }
+    <script src="./js/i18n.js"></script>
 
-        function changeLang(lang) {
-            localStorage.setItem('selected_lang', lang);
-            if (lang === 'ko') {
-                var exp = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
-                document.cookie = "googtrans=; " + exp + "; path=/;";
-                var host = location.hostname.replace('www.', '');
-                if (host) document.cookie = "googtrans=; " + exp + "; path=/; domain=" + host + ";";
-                location.href = location.href.split('#')[0];
-            } else {
-                setTransCookie(lang);
-                var newUrl = location.href.split('#')[0] + "#googtrans(ko|" + lang + ")";
-                location.href = newUrl;
-                location.reload();
-            }
-        }
-
-        function updateUI() {
-            const saved = localStorage.getItem('selected_lang') || 'ko';
-            $('[id^=btn_lang_]').removeClass('ring-2 ring-blue-500 opacity-100').addClass('opacity-60');
-
-            let target = 'ko';
-            if (saved === 'en') target = 'en';
-            if (saved === 'ja') target = 'ja';
-            if (saved === 'zh-CN') target = 'zh';
-
-            $('#btn_lang_' + target).removeClass('opacity-60').addClass('ring-2 ring-blue-500 opacity-100');
-        }
-
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'ko',
-                autoDisplay: false,
-            }, 'google_translate_element');
-        }
-
-        $(function () {
-            updateUI();
-
-
-
-            // Mobile Menu
-            $(".gnb_menu_btn").click(function () {
-                $("#gnb_all_bg").removeClass("invisible opacity-0").addClass("visible opacity-100");
-                $("#gnb_all").removeClass("-right-full").addClass("right-0");
-                $('body').addClass('overflow-hidden');
-            });
-            $(".gnb_close_btn, #gnb_all_bg").click(function () {
-                $("#gnb_all").removeClass("right-0").addClass("-right-full");
-                $("#gnb_all_bg").removeClass("visible opacity-100").addClass("invisible opacity-0");
-                $('body').removeClass('overflow-hidden');
-            });
-
-            // Scroll Top
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 300) {
-                    $('#top_btn').fadeIn();
-                } else {
-                    $('#top_btn').fadeOut();
-                }
-
-                // Header Glass Effect on Scroll
-                if ($(this).scrollTop() > 50) {
-                    $('#hd').addClass('glass-header shadow-sm');
-                } else {
-                    // Start state matches
-                }
-            });
-
-            $("#top_btn").on("click", function () {
-                $("html, body").animate({ scrollTop: 0 }, 500);
-                return false;
-            });
-
-
-        });
-
-        // Original Google Translate Consistency Scripts
-        (function (ns) {
-            ns.PAGE_LANG = ns.PAGE_LANG || 'ko';
-            ns.SUPPORT_LANGS = ns.SUPPORT_LANGS || ['ko', 'en', 'ja', 'zh-CN'];
-            var saveLang = function (l) { try { localStorage.setItem('site_lang', l); } catch (e) { } };
-            var loadLang = function () { try { return localStorage.getItem('site_lang'); } catch (e) { return null; } };
-            function getGoogTrans() { try { var raw = document.cookie.split('; ').find(function (x) { return x.indexOf('googtrans=') === 0; }); return raw ? decodeURIComponent(raw.split('=')[1]) : ''; } catch (e) { return ''; } }
-
-            var revertingToKo = false;
-            function revertToKorean() {
-                if (revertingToKo) return;
-                revertingToKo = true;
-                saveLang(ns.PAGE_LANG);
-                setTimeout(function () { revertingToKo = false; }, 300);
-            }
-            function watchTranslateState() {
-                var htmlEl = document.documentElement;
-                var isTranslated = function () { var c = htmlEl.classList; return c.contains('translated-ltr') || c.contains('translated-rtl'); };
-                var lastState = isTranslated();
-                var obs = new MutationObserver(function () {
-                    var now = isTranslated();
-                    if (lastState === true && now === false) { revertToKorean(); }
-                    lastState = now;
-                });
-                obs.observe(htmlEl, { attributes: true, attributeFilter: ['class'] });
-            }
-            window.googleTranslateElementInit = function () {
-                new google.translate.TranslateElement({
-                    pageLanguage: ns.PAGE_LANG,
-                    includedLanguages: ns.SUPPORT_LANGS.join(','),
-                    autoDisplay: false,
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element');
-            };
-            document.addEventListener('DOMContentLoaded', function () {
-                watchTranslateState();
-            });
-        })(window.__gt = window.__gt || {});
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Analytics Strings (Preserved) -->
     <script>var smipHomeCode = "smip20251208S0708T3529";</script>
