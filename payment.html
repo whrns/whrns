@@ -397,10 +397,15 @@
                     <p class="text-slate-500 mb-8 border-l-4 border-slate-200 pl-3">원활한 예약 확정을 위해, 입금 및 결제 진행 후 아래의 항목을
                         빠짐없이 작성해 주세요.</p>
 
-                    <form id="paymentForm" class="flex flex-col gap-6" action="https://formspree.io/f/mwvwzlvy"
-                        method="POST">
-                        <input type="hidden" name="_next" value="https://goodtimekorea.com/apply_complete.html">
-                        <input type="hidden" name="_subject" value="[굿타임코리아] 입금/결제 확인 요청">
+                    <div data-fs-success class="hidden p-6 mb-8 text-blue-700 bg-blue-50 border border-blue-200 rounded-2xl font-bold flex flex-col items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-check text-4xl text-blue-500 mb-2"></i>
+                        입금 및 결제 확인 요청이 성공적으로 접수되었습니다! 담당자가 곧 확인 후 연락드리겠습니다.
+                    </div>
+                    <div data-fs-error class="hidden p-4 mb-8 text-red-700 bg-red-50 border border-red-200 rounded-2xl font-semibold">
+                        요청 중 오류가 발생했습니다. 입력 정보를 확인 후 다시 시도해주세요.
+                    </div>
+
+                    <form id="paymentForm" class="flex flex-col gap-6" action="https://formspree.io/f/mwvwzbwd" method="POST">
 
                         <!-- Row 1 -->
                         <div class="grid md:grid-cols-2 gap-6">
@@ -412,10 +417,11 @@
                                         class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                                         <i class="fa-regular fa-user"></i>
                                     </div>
-                                    <input type="text" id="payName" name="payName" required
+                                    <input type="text" id="payName" name="payName" required data-fs-field
                                         class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
                                         placeholder="홍길동">
                                 </div>
+                                <span data-fs-error="payName" class="text-xs text-red-500 mt-1"></span>
                             </div>
                             <div class="flex flex-col gap-2 relative">
                                 <label for="payPhone" class="text-sm font-semibold text-slate-700">연락처 <span
@@ -425,10 +431,11 @@
                                         class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
-                                    <input type="tel" id="payPhone" name="payPhone" required
+                                    <input type="tel" id="payPhone" name="payPhone" required data-fs-field
                                         class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
                                         placeholder="010-0000-0000">
                                 </div>
+                                <span data-fs-error="payPhone" class="text-xs text-red-500 mt-1"></span>
                             </div>
                         </div>
 
@@ -442,12 +449,13 @@
                                         class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
                                         <i class="fa-solid fa-won-sign"></i>
                                     </div>
-                                    <input type="number" id="payAmount" name="payAmount" required
+                                    <input type="number" id="payAmount" name="payAmount" required data-fs-field
                                         class="w-full pl-10 pr-12 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800 font-bold"
                                         placeholder="50,000" min="0">
                                     <span
                                         class="absolute right-4 top-3.5 text-slate-400 font-semibold text-sm">KRW</span>
                                 </div>
+                                <span data-fs-error="payAmount" class="text-xs text-red-500 mt-1"></span>
                             </div>
 
                             <div class="flex flex-col gap-2 relative">
@@ -458,7 +466,7 @@
                                         class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 z-10">
                                         <i class="fa-solid fa-wallet"></i>
                                     </div>
-                                    <select id="payMethod" name="payMethod"
+                                    <select id="payMethod" name="payMethod" data-fs-field
                                         class="w-full pl-11 pr-10 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800 appearance-none cursor-pointer">
                                         <optgroup label="국내 결제">
                                             <option value="카카오페이">카카오페이 / KakaoPay</option>
@@ -480,6 +488,7 @@
                                         <i class="fa-solid fa-chevron-down text-sm"></i>
                                     </div>
                                 </div>
+                                <span data-fs-error="payMethod" class="text-xs text-red-500 mt-1"></span>
                             </div>
                         </div>
 
@@ -490,20 +499,22 @@
                             </h4>
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div class="flex flex-col gap-2">
-                                    <input type="text" id="depAddress" name="depAddress"
+                                    <input type="text" id="depAddress" name="depAddress" data-fs-field
                                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
                                         placeholder="출발지 (Departure)">
+                                    <span data-fs-error="depAddress" class="text-xs text-red-500 mt-1"></span>
                                 </div>
                                 <div class="flex flex-col gap-2">
-                                    <input type="text" id="arrAddress" name="arrAddress"
+                                    <input type="text" id="arrAddress" name="arrAddress" data-fs-field
                                         class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all outline-none text-slate-800"
                                         placeholder="도착지 (Arrival)">
+                                    <span data-fs-error="arrAddress" class="text-xs text-red-500 mt-1"></span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Submit Buttons -->
-                        <button type="submit" id="submitBtn2"
+                        <button type="submit" id="submitBtn2" data-fs-submit-btn
                             class="w-full mt-4 bg-slate-900 text-white font-bold text-xl py-5 rounded-2xl shadow-lg shadow-slate-900/20 hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 transition-all transform hover:-translate-y-1 relative overflow-hidden group">
                             <span class="relative z-10 flex items-center justify-center gap-2">입금 내역 확인 요청 <i
                                     class="fa-solid fa-paper-plane text-sm opacity-80 mt-0.5"></i></span>
@@ -574,6 +585,13 @@
     <script>var smipHomeCode = "smip20251208S0708T3529";</script>
     <script src="//miracleintip.com/smip_log.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17777128864"></script>
+    <!-- Formspree Integration -->
+    <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#paymentForm', formId: 'mwvwzbwd' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }

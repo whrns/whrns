@@ -228,9 +228,15 @@
 
             <!-- Form -->
             <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 p-6 md:p-10 border border-slate-50">
-                <form action="https://formspree.io/f/mwvwzlvy" method="POST" class="flex flex-col gap-6">
-                    <input type="hidden" name="_next" value="https://goodtimekorea.com/apply_complete.html">
+                <div data-fs-success class="hidden p-6 mb-6 text-blue-700 bg-blue-50 border border-blue-200 rounded-xl font-bold flex flex-col items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-check text-4xl text-blue-500 mb-2"></i>
+                    성공적으로 신청되었습니다! 담당자가 곧 연락드리겠습니다.
+                </div>
+                <div data-fs-error class="hidden p-4 mb-6 text-red-700 bg-red-50 border border-red-200 rounded-xl font-semibold">
+                    신청 중 오류가 발생했습니다. 입력 정보를 다시 확인해주세요.
+                </div>
 
+                <form id="apply-form" action="https://formspree.io/f/mwvwzbwd" method="POST" class="flex flex-col gap-6">
                     <!-- Section: Contact Info -->
                     <div>
                         <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><i
@@ -238,21 +244,24 @@
                         <div class="grid md:grid-cols-2 gap-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="userName" class="text-sm font-semibold text-slate-600">이름</label>
-                                <input type="text" id="userName" name="userName" required
+                                <input type="text" id="userName" name="userName" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
                                     placeholder="홍길동">
+                                <span data-fs-error="userName" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="userPhone" class="text-sm font-semibold text-slate-600">휴대폰 번호</label>
-                                <input type="tel" id="userPhone" name="userPhone" required
+                                <input type="tel" id="userPhone" name="userPhone" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
                                     placeholder="010-1234-5678">
+                                <span data-fs-error="userPhone" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                             <div class="flex flex-col gap-1.5 md:col-span-2">
                                 <label for="userEmail" class="text-sm font-semibold text-slate-600">이메일 주소</label>
-                                <input type="email" id="userEmail" name="userEmail" required
+                                <input type="email" id="userEmail" name="userEmail" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
                                     placeholder="example@email.com">
+                                <span data-fs-error="userEmail" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                         </div>
                     </div>
@@ -267,28 +276,32 @@
                         <div class="grid md:grid-cols-2 gap-4 mb-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="depDate" class="text-sm font-semibold text-slate-600">출발 날짜</label>
-                                <input type="date" id="depDate" name="depDate" required
+                                <input type="date" id="depDate" name="depDate" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none text-slate-600">
+                                <span data-fs-error="depDate" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="depTime" class="text-sm font-semibold text-slate-600">출발 시간</label>
-                                <input type="time" id="depTime" name="depTime" required
+                                <input type="time" id="depTime" name="depTime" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none text-slate-600">
+                                <span data-fs-error="depTime" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-4 mb-4">
                             <div class="flex flex-col gap-1.5">
                                 <label for="depAddress" class="text-sm font-semibold text-slate-600">출발지 주소</label>
-                                <input type="text" id="depAddress" name="depAddress" required
+                                <input type="text" id="depAddress" name="depAddress" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none bg-blue-50/50"
                                     placeholder="차량이 픽업할 정확한 위치">
+                                <span data-fs-error="depAddress" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="arrAddress" class="text-sm font-semibold text-slate-600">도착지 주소</label>
-                                <input type="text" id="arrAddress" name="arrAddress" required
+                                <input type="text" id="arrAddress" name="arrAddress" required data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none bg-blue-50/50"
                                     placeholder="목적지">
+                                <span data-fs-error="arrAddress" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                         </div>
 
@@ -296,35 +309,38 @@
                             <div class="flex flex-col gap-1.5">
                                 <label for="passengerCount" class="text-sm font-semibold text-slate-600">탑승 인원</label>
                                 <div class="relative">
-                                    <input type="number" id="passengerCount" name="passengerCount" min="1" required
+                                    <input type="number" id="passengerCount" name="passengerCount" min="1" required data-fs-field
                                         class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
                                         placeholder="1">
                                     <span class="absolute right-4 top-3 text-slate-400 text-sm">명</span>
                                 </div>
+                                <span data-fs-error="passengerCount" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                             <div class="flex flex-col gap-1.5">
                                 <label for="luggageCount" class="text-sm font-semibold text-slate-600">짐 갯수</label>
                                 <div class="relative">
-                                    <input type="number" id="luggageCount" name="luggageCount" min="0" required
+                                    <input type="number" id="luggageCount" name="luggageCount" min="0" required data-fs-field
                                         class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none"
                                         placeholder="0">
                                     <span class="absolute right-4 top-3 text-slate-400 text-sm">개</span>
                                 </div>
+                                <span data-fs-error="luggageCount" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                             <div class="flex flex-col gap-1.5 col-span-2 mt-4">
                                 <label for="additionalInfo" class="text-sm font-semibold text-slate-600">추가 요청 및
                                     문의사항</label>
-                                <textarea id="additionalInfo" name="additionalInfo" rows="4"
+                                <textarea id="additionalInfo" name="additionalInfo" rows="4" data-fs-field
                                     class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all outline-none resize-none"
                                     placeholder="기타 요청사항이나 문의하실 내용을 자유롭게 적어주세요."></textarea>
+                                <span data-fs-error="additionalInfo" class="text-xs text-red-500 mt-0.5"></span>
                             </div>
                         </div>
                     </div>
 
                     <hr class="border-slate-100">
 
-                    <button type="submit"
-                        class="w-full bg-blue-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-2">
+                    <button type="submit" data-fs-submit-btn
+                        class="w-full bg-blue-600 text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-blue-200 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-2">
                         신청하기
                     </button>
                     <p class="text-xs text-center text-slate-400 mt-2">입력하신 정보는 상담 예약 용도로만 사용됩니다.</p>
@@ -389,6 +405,13 @@
     <script>var smipHomeCode = "smip20251208S0708T3529";</script>
     <script src="//miracleintip.com/smip_log.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17777128864"></script>
+    <!-- Formspree Integration -->
+    <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#apply-form', formId: 'mwvwzbwd' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
