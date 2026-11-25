@@ -241,6 +241,7 @@
                     <input type="hidden" name="_subject" value="[굿타임코리아] 새로운 서비스 신청이 접수되었습니다.">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" id="formsubmit-next" value="">
                     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
                     <!-- Section: Contact Info -->
@@ -401,49 +402,36 @@
     <script>var smipHomeCode = "smip20251208S0708T3529";</script>
     <script src="//miracleintip.com/smip_log.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17777128864"></script>
-    <!-- FormSubmit Integration (Free) -->
+    <!-- FormSubmit Integration (Free Standard POST) -->
     <script>
         (function () {
             const form = document.getElementById('apply-form');
             const submitBtn = document.getElementById('apply-submit-btn');
+            const nextInput = document.getElementById('formsubmit-next');
             const errorBox = document.getElementById('apply-error');
-            const successBox = document.getElementById('apply-success');
             if (!form) return;
 
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
-                errorBox.classList.add('hidden');
-                successBox.classList.add('hidden');
+            if (nextInput && /^https?:$/.test(window.location.protocol)) {
+                nextInput.value = new URL('apply_complete.html', window.location.href).href;
+            }
 
-                const originalText = submitBtn.textContent;
-                submitBtn.disabled = true;
-                submitBtn.textContent = '전송 중...';
-
-                try {
-                    const response = await fetch('https://formsubmit.co/ajax/lovepost@goodtimekorea.com', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json'
-                        },
-                        body: new FormData(form)
-                    });
-
-                    const result = await response.json();
-                    const isSuccess = response.ok && (result.success === true || result.success === 'true');
-
-                    if (isSuccess) {
-                        successBox.classList.remove('hidden');
-                        window.location.href = 'apply_complete.html';
-                    } else {
-                        errorBox.textContent = result.message || '신청 중 오류가 발생했습니다. 입력 정보를 다시 확인해주세요.';
+            form.addEventListener('submit', function (e) {
+                if (window.location.protocol === 'file:') {
+                    e.preventDefault();
+                    const msg = '로컬 파일(file://)에서는 폼 전송 및 인증이 차단됩니다. 카페24 호스팅(https://)에 업로드하거나 로컬 웹 서버에서 실행한 뒤 신청하기를 눌러주세요.';
+                    if (errorBox) {
+                        errorBox.textContent = msg;
                         errorBox.classList.remove('hidden');
+                        errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        alert(msg);
                     }
-                } catch (err) {
-                    errorBox.textContent = '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
-                    errorBox.classList.remove('hidden');
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalText;
+                    return;
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = '전송 중...';
                 }
             });
         })();
